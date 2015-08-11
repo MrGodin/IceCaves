@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{17ED9B47-94FD-487E-8427-0F1E6580DCFF}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Burgh</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include;C:\Program Files %28x86%29\Microsoft SDKs\Windows\v7.1A\Include;$(DXSDK_DIR)\Include</IncludePath>
+    <LibraryPath>D:\Program Files %28x86%29\Microsoft Visual Studio 12.0\VC\lib;C:\Program Files %28x86%29\Microsoft SDKs\Windows\v7.1A\Lib;$(DXSDK_DIR)\Lib\x86</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include;C:\Program Files %28x86%29\Microsoft SDKs\Windows\v7.1A\Include;$(DXSDK_DIR)\Include</IncludePath>
+    <LibraryPath>D:\Program Files %28x86%29\Microsoft Visual Studio 12.0\VC\lib;C:\Program Files %28x86%29\Microsoft SDKs\Windows\v7.1A\Lib;$(DXSDK_DIR)\Lib\x86</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3d9.lib;d3dx9.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GuiButton.cpp" />
+    <ClCompile Include="GuiCheckBox.cpp" />
+    <ClCompile Include="GuiControl.cpp" />
+    <ClCompile Include="GuiExitMenu.cpp" />
+    <ClCompile Include="GuiFrame.cpp" />
+    <ClCompile Include="GuiListBox.cpp" />
+    <ClCompile Include="GuiLoadGame.cpp" />
+    <ClCompile Include="GuiOptionsMenu.cpp" />
+    <ClCompile Include="GuiSliderKnob.cpp" />
+    <ClCompile Include="GuiState.cpp" />
+    <ClCompile Include="GuiStateTmpl.cpp" />
+    <ClCompile Include="GuiWindow.cpp" />
+    <ClCompile Include="IceCaves.cpp" />
+    <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="keyboardcontroller.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MapTile.cpp" />
+    <ClCompile Include="PlayerBounce.cpp" />
+    <ClCompile Include="PlayerJump.cpp" />
+    <ClCompile Include="PlayerMove.cpp" />
+    <ClCompile Include="PlayerStand.cpp" />
+    <ClCompile Include="StartMenu.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="2dcamera.h" />
+    <ClInclude Include="background.h" />
+    <ClInclude Include="BiDirection.h" />
+    <ClInclude Include="Color.h" />
+    <ClInclude Include="fps.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="grid.h" />
+    <ClInclude Include="GuiButton.h" />
+    <ClInclude Include="GuiCheckBox.h" />
+    <ClInclude Include="GuiContainer.h" />
+    <ClInclude Include="GuiControl.h" />
+    <ClInclude Include="GuiCore.h" />
+    <ClInclude Include="GuiExitMenu.h" />
+    <ClInclude Include="GuiFrame.h" />
+    <ClInclude Include="GuiListBox.h" />
+    <ClInclude Include="GuiLoadGame.h" />
+    <ClInclude Include="GuiObject.h" />
+    <ClInclude Include="GuiOptionsMenu.h" />
+    <ClInclude Include="GuiSliderKnob.h" />
+    <ClInclude Include="GuiState.h" />
+    <ClInclude Include="GuiStateTmpl.h" />
+    <ClInclude Include="GuiTextControl.h" />
+    <ClInclude Include="GuiWindow.h" />
+    <ClInclude Include="IceCaves.h" />
+    <ClInclude Include="Engine.h" />
+    <ClInclude Include="keyboardController.h" />
+    <ClInclude Include="levelstrings.h" />
+    <ClInclude Include="Map.h" />
+    <ClInclude Include="MapTile.h" />
+    <ClInclude Include="MyString.h" />
+    <ClInclude Include="ObjectState.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerBounce.h" />
+    <ClInclude Include="PlayerControl.h" />
+    <ClInclude Include="PlayerJump.h" />
+    <ClInclude Include="PlayerMove.h" />
+    <ClInclude Include="PlayerStand.h" />
+    <ClInclude Include="Point.h" />
+    <ClInclude Include="rect.h" />
+    <ClInclude Include="ScreenRes.h" />
+    <ClInclude Include="SpriteSheet.h" />
+    <ClInclude Include="StartMenu.h" />
+    <ClInclude Include="StatDisplay.h" />
+    <ClInclude Include="StateCores.h" />
+    <ClInclude Include="Utils.h" />
+    <ClInclude Include="Vec2.h" />
+    <ClInclude Include="ViewPort2.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
