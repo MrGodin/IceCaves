@@ -1,0 +1,77 @@
+﻿Build started 8/10/2015 6:13:13 AM.
+     1>Project "C:\Users\Ben\documents\visual studio 2013\Projects\Burgh\Burgh\Burgh.vcxproj" on node 2 (Rebuild target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt GameObject.cpp GuiButton.cpp GuiCheckBox.cpp GuiControl.cpp GuiExitMenu.cpp GuiFrame.cpp GuiListBox.cpp GuiLoadGame.cpp GuiOptionsMenu.cpp GuiSliderKnob.cpp GuiState.cpp GuiStateTmpl.cpp GuiWindow.cpp IceCaves.cpp Engine.cpp keyboardcontroller.cpp Main.cpp MapTile.cpp PlayerBounce.cpp PlayerJump.cpp PlayerMove.cpp PlayerStand.cpp StartMenu.cpp
+         StartMenu.cpp
+         PlayerStand.cpp
+         PlayerMove.cpp
+         PlayerJump.cpp
+         PlayerBounce.cpp
+         MapTile.cpp
+         Main.cpp
+         keyboardcontroller.cpp
+         Engine.cpp
+         IceCaves.cpp
+         GuiWindow.cpp
+     1>c:\users\ben\documents\visual studio 2013\projects\burgh\burgh\guilistbox.h(59): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\ben\documents\visual studio 2013\projects\burgh\burgh\guilistbox.h(61): warning C4018: '>' : signed/unsigned mismatch
+     1>c:\users\ben\documents\visual studio 2013\projects\burgh\burgh\guilistbox.h(64): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\ben\documents\visual studio 2013\projects\burgh\burgh\guilistbox.h(105): warning C4018: '>=' : signed/unsigned mismatch
+         GuiStateTmpl.cpp
+         GuiState.cpp
+         GuiSliderKnob.cpp
+     1>c:\users\ben\documents\visual studio 2013\projects\burgh\burgh\guisliderknob.h(41): warning C4244: '=' : conversion from 'float' to 'long', possible loss of data
+     1>c:\users\ben\documents\visual studio 2013\projects\burgh\burgh\guisliderknob.cpp(9): warning C4244: 'initializing' : conversion from 'long' to 'float', possible loss of data
+     1>c:\users\ben\documents\visual studio 2013\projects\burgh\burgh\guisliderknob.cpp(16): warning C4244: 'argument' : conversion from 'float' to 'long', possible loss of data
+     1>c:\users\ben\documents\visual studio 2013\projects\burgh\burgh\guisliderknob.cpp(18): warning C4244: 'initializing' : conversion from 'long' to 'float', possible loss of data
+     1>c:\users\ben\documents\visual studio 2013\projects\burgh\burgh\guisliderknob.cpp(19): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+         GuiOptionsMenu.cpp
+         GuiLoadGame.cpp
+     1>c:\users\ben\documents\visual studio 2013\projects\burgh\burgh\guilistbox.h(59): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\ben\documents\visual studio 2013\projects\burgh\burgh\guilistbox.h(61): warning C4018: '>' : signed/unsigned mismatch
+     1>c:\users\ben\documents\visual studio 2013\projects\burgh\burgh\guilistbox.h(64): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\ben\documents\visual studio 2013\projects\burgh\burgh\guilistbox.h(105): warning C4018: '>=' : signed/unsigned mismatch
+         GuiListBox.cpp
+     1>c:\users\ben\documents\visual studio 2013\projects\burgh\burgh\guilistbox.h(59): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\ben\documents\visual studio 2013\projects\burgh\burgh\guilistbox.h(61): warning C4018: '>' : signed/unsigned mismatch
+     1>c:\users\ben\documents\visual studio 2013\projects\burgh\burgh\guilistbox.h(64): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\ben\documents\visual studio 2013\projects\burgh\burgh\guilistbox.h(105): warning C4018: '>=' : signed/unsigned mismatch
+         GuiFrame.cpp
+         GuiExitMenu.cpp
+         GuiControl.cpp
+         Generating Code...
+         Compiling...
+         GuiCheckBox.cpp
+         GuiButton.cpp
+         GameObject.cpp
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Ben\documents\visual studio 2013\Projects\Burgh\Debug\Burgh.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86" d3d9.lib d3dx9.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Ben\documents\visual studio 2013\Projects\Burgh\Debug\Burgh.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Ben\documents\visual studio 2013\Projects\Burgh\Debug\Burgh.lib" /MACHINE:X86 Debug\GameObject.obj
+         Debug\GuiButton.obj
+         Debug\GuiCheckBox.obj
+         Debug\GuiControl.obj
+         Debug\GuiExitMenu.obj
+         Debug\GuiFrame.obj
+         Debug\GuiListBox.obj
+         Debug\GuiLoadGame.obj
+         Debug\GuiOptionsMenu.obj
+         Debug\GuiSliderKnob.obj
+         Debug\GuiState.obj
+         Debug\GuiStateTmpl.obj
+         Debug\GuiWindow.obj
+         Debug\IceCaves.obj
+         Debug\Engine.obj
+         Debug\keyboardcontroller.obj
+         Debug\Main.obj
+         Debug\MapTile.obj
+         Debug\PlayerBounce.obj
+         Debug\PlayerJump.obj
+         Debug\PlayerMove.obj
+         Debug\PlayerStand.obj
+         Debug\StartMenu.obj
+         Burgh.vcxproj -> C:\Users\Ben\documents\visual studio 2013\Projects\Burgh\Debug\Burgh.exe
+     1>Done Building Project "C:\Users\Ben\documents\visual studio 2013\Projects\Burgh\Burgh\Burgh.vcxproj" (Rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:23.92
