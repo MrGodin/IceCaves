@@ -40,7 +40,7 @@ public:
 
 class EnemyState : public ObjectState
 {
-private:
+protected:
 	EnemyCore* pCore = NULL;
 public:
 	EnemyState(EnemyCore* core)
