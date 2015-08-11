@@ -37,7 +37,7 @@ public:
 		float parentHeight = (float)obj->Height();
 		if (itemCount > Desc.itemDisplayCount)
 		{
-			float percent = (float)(Desc.itemDisplayCount / itemCount);
+			 float percent = (float)(Desc.itemDisplayCount / itemCount);
 			frameDesc.height = (long)(parentHeight * percent);
 			float move_space = (float)parentHeight - frameDesc.height;
 			int undisplayeditems = (int)(itemCount- Desc.itemDisplayCount);
