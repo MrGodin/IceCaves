@@ -8,7 +8,7 @@
 void PlayerBounce::Update(float dt)
 {
 	
-	pCore->thrust += 0.15f;
+	 pCore->thrust += 0.15f;
 	pCore->Vel.y += gravity ;
 	if (isMoving)
 	{
