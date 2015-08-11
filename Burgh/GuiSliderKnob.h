@@ -40,7 +40,7 @@ public:
 			 float percent = (float)(Desc.itemDisplayCount / itemCount);
 			frameDesc.height = (long)(parentHeight * percent);
 			float move_space = (float)parentHeight - frameDesc.height;
-			int undisplayeditems = (int)(itemCount- Desc.itemDisplayCount);
+			 int undisplayeditems = (int)(itemCount- Desc.itemDisplayCount);
 		    moveDistToIndex = move_space / undisplayeditems;
 			
 		}
