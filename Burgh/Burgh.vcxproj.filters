@@ -1,0 +1,342 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Objects">
+      <UniqueIdentifier>{b9db9d9b-8075-4f75-8ba1-e5cb404f4e15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Controls">
+      <UniqueIdentifier>{95177f62-4707-4eb9-8d73-86594d3a2834}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Controls\Headers">
+      <UniqueIdentifier>{c5c18f52-5eac-4cc7-9a1f-684ae865a3de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Controls\Source">
+      <UniqueIdentifier>{3514824b-3c78-41e5-b681-d818daed8f77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\GUI">
+      <UniqueIdentifier>{0dae7e6b-0739-414d-a8a3-6c6423024da6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\GUI\Headers">
+      <UniqueIdentifier>{88bff162-2abe-40a4-bd06-e1e096ac27ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\GUI\Source">
+      <UniqueIdentifier>{793196fd-cba2-4396-995f-d42918e2d279}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{e40791a1-cc0f-47c2-8df3-0554060641e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\GUI\State Machine">
+      <UniqueIdentifier>{7f3784b3-0c51-4680-bfeb-beeb73c49799}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\GUI\State Machine\Headers">
+      <UniqueIdentifier>{227b6ee9-b937-45a7-8b79-7e66d70abebe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\GUI\State Machine\Source">
+      <UniqueIdentifier>{6cee5789-c597-412c-b8a3-61f1dcae8d80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Player">
+      <UniqueIdentifier>{bbb4df21-9272-4bc7-a858-10813fff05c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Player\Headers">
+      <UniqueIdentifier>{f85bec95-11be-4379-9761-bcb0dd8c5a9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Player\Source">
+      <UniqueIdentifier>{933d6040-ff9a-4ca7-aa5c-b1019a08f64e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Player\State Machine">
+      <UniqueIdentifier>{9e1ac690-ebfd-4f81-8703-038460a9c077}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Player\State Machine\Headers">
+      <UniqueIdentifier>{ae5a8997-4a13-49d5-b99d-9adc6926cb5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Player\State Machine\Source">
+      <UniqueIdentifier>{444f0218-8026-4de0-8dd4-db37afc99b36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Game Pieces">
+      <UniqueIdentifier>{e7f46108-3e86-40c6-abbd-ac75820a4af1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Map">
+      <UniqueIdentifier>{90acfd71-9677-472a-b8e7-5d4844224cfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Map\Headers">
+      <UniqueIdentifier>{3531c44b-34a5-42b5-8949-ccc4671a56de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Map\Source">
+      <UniqueIdentifier>{342539cf-aed1-4ff8-b686-6614f7d715b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Camera">
+      <UniqueIdentifier>{3629900f-f91c-476c-8ccd-6efb8b59e3a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Imaging">
+      <UniqueIdentifier>{2ec3206a-ae00-40ea-a2bf-9625bcedf56c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Display">
+      <UniqueIdentifier>{eba5da5f-912b-47d6-82fc-261d90bbd811}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Files">
+      <UniqueIdentifier>{4af7bc7f-8ddc-4480-a200-a43b2765f372}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="keyboardcontroller.cpp">
+      <Filter>Objects\Controls\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="IceCaves.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiFrame.cpp">
+      <Filter>Objects\GUI\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiButton.cpp">
+      <Filter>Objects\GUI\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiWindow.cpp">
+      <Filter>Objects\GUI\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiState.cpp">
+      <Filter>Objects\GUI\State Machine\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="StartMenu.cpp">
+      <Filter>Objects\GUI\State Machine\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiStateTmpl.cpp">
+      <Filter>Objects\GUI\State Machine\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiExitMenu.cpp">
+      <Filter>Objects\GUI\State Machine\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiOptionsMenu.cpp">
+      <Filter>Objects\GUI\State Machine\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiListBox.cpp">
+      <Filter>Objects\GUI\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiControl.cpp">
+      <Filter>Objects\GUI\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiSliderKnob.cpp">
+      <Filter>Objects\GUI\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiLoadGame.cpp">
+      <Filter>Objects\GUI\State Machine\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerMove.cpp">
+      <Filter>Objects\Player\State Machine\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerStand.cpp">
+      <Filter>Objects\Player\State Machine\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerJump.cpp">
+      <Filter>Objects\Player\State Machine\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBounce.cpp">
+      <Filter>Objects\Player\State Machine\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="MapTile.cpp">
+      <Filter>Objects\Map\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Objects\Game Pieces</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiCheckBox.cpp">
+      <Filter>Objects\GUI\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiSlider.cpp">
+      <Filter>Objects\GUI\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="FileHandler.cpp">
+      <Filter>Objects\Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiDisplayPanel.cpp">
+      <Filter>Objects\GUI\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiInput.cpp">
+      <Filter>Objects\GUI\State Machine\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiInputBox.cpp">
+      <Filter>Objects\GUI\Source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="keyboardController.h">
+      <Filter>Objects\Controls\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerControl.h">
+      <Filter>Objects\Controls\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="IceCaves.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Vec2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="rect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiObject.h">
+      <Filter>Objects\GUI\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiFrame.h">
+      <Filter>Objects\GUI\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Point.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiControl.h">
+      <Filter>Objects\GUI\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiButton.h">
+      <Filter>Objects\GUI\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiTextControl.h">
+      <Filter>Objects\GUI\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiContainer.h">
+      <Filter>Objects\GUI\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiWindow.h">
+      <Filter>Objects\GUI\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiCore.h">
+      <Filter>Objects\GUI\State Machine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiState.h">
+      <Filter>Objects\GUI\State Machine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="StartMenu.h">
+      <Filter>Objects\GUI\State Machine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiStateTmpl.h">
+      <Filter>Objects\GUI\State Machine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiExitMenu.h">
+      <Filter>Objects\GUI\State Machine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenRes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiOptionsMenu.h">
+      <Filter>Objects\GUI\State Machine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiListBox.h">
+      <Filter>Objects\GUI\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="MyString.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiSliderKnob.h">
+      <Filter>Objects\GUI\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiLoadGame.h">
+      <Filter>Objects\GUI\State Machine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Objects\Game Pieces</Filter>
+    </ClInclude>
+    <ClInclude Include="StateCores.h">
+      <Filter>Objects\Player\State Machine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectState.h">
+      <Filter>Objects\Player\State Machine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="BiDirection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerMove.h">
+      <Filter>Objects\Player\State Machine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Objects\Player\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerStand.h">
+      <Filter>Objects\Player\State Machine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerJump.h">
+      <Filter>Objects\Player\State Machine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBounce.h">
+      <Filter>Objects\Player\State Machine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Objects\Map\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="MapTile.h">
+      <Filter>Objects\Map\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="levelstrings.h">
+      <Filter>Objects\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="2dcamera.h">
+      <Filter>Objects\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteSheet.h">
+      <Filter>Objects\Imaging</Filter>
+    </ClInclude>
+    <ClInclude Include="grid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ViewPort2.h">
+      <Filter>Objects\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="background.h">
+      <Filter>Objects\Imaging</Filter>
+    </ClInclude>
+    <ClInclude Include="fps.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StatDisplay.h">
+      <Filter>Objects\Display</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiCheckBox.h">
+      <Filter>Objects\GUI\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiSlider.h">
+      <Filter>Objects\GUI\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FileStructs.h">
+      <Filter>Objects\Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileHandler.h">
+      <Filter>Objects\Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiDisplayPanel.h">
+      <Filter>Objects\GUI\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelHandler.h">
+      <Filter>Objects\Map\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiInput.h">
+      <Filter>Objects\GUI\State Machine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiInputBox.h">
+      <Filter>Objects\GUI\Headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
