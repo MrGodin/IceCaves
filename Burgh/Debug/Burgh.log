@@ -1,7 +1,19 @@
-﻿Build started 8/10/2015 10:30:59 PM.
+﻿Build started 8/16/2015 4:50:15 AM.
      1>Project "E:\Documents and Settings\Josh\My Documents\Visual Studio 2013\Projects\IceCaves\Burgh\Burgh.vcxproj" on node 2 (Build target(s)).
-     1>Link:
-         D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\Documents and Settings\Josh\My Documents\Visual Studio 2013\Projects\IceCaves\Debug\Burgh.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86" /LIBPATH:"D:\Program Files (x86)\Visual Leak Detector\lib\Win32" d3d9.lib d3dx9.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\Documents and Settings\Josh\My Documents\Visual Studio 2013\Projects\IceCaves\Debug\Burgh.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\Documents and Settings\Josh\My Documents\Visual Studio 2013\Projects\IceCaves\Debug\Burgh.lib" /MACHINE:X86 Debug\GameObject.obj
+     1>ClCompile:
+         D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" /I"D:\Program Files (x86)\Visual Leak Detector\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Dozer.cpp
+         Dozer.cpp
+     1>c:\program files (x86)\microsoft sdks\windows\v7.1a\include\sal_supp.h(57): warning C4005: '__useHeader' : macro redefinition
+                 d:\program files (x86)\microsoft visual studio 12.0\vc\include\sal.h(2886) : see previous definition of '__useHeader'
+     1>c:\program files (x86)\microsoft sdks\windows\v7.1a\include\specstrings_supp.h(77): warning C4005: '__on_failure' : macro redefinition
+                 d:\program files (x86)\microsoft visual studio 12.0\vc\include\sal.h(2896) : see previous definition of '__on_failure'
+     1>e:\documents and settings\josh\my documents\visual studio 2013\projects\icecaves\burgh\dozer.cpp(57): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>e:\documents and settings\josh\my documents\visual studio 2013\projects\icecaves\burgh\dozer.cpp(58): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+       Link:
+         D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\Documents and Settings\Josh\My Documents\Visual Studio 2013\Projects\IceCaves\Debug\Burgh.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86" /LIBPATH:"D:\Program Files (x86)\Visual Leak Detector\lib\Win32" d3d9.lib d3dx9.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\Documents and Settings\Josh\My Documents\Visual Studio 2013\Projects\IceCaves\Debug\Burgh.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\Documents and Settings\Josh\My Documents\Visual Studio 2013\Projects\IceCaves\Debug\Burgh.lib" /MACHINE:X86 Debug\Dozer.obj
+         Debug\EnemyMoveLeft.obj
+         Debug\EnemyMoveRight.obj
+         Debug\GameObject.obj
          Debug\GuiButton.obj
          Debug\GuiCheckBox.obj
          Debug\GuiControl.obj
@@ -29,4 +41,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.41
+Time Elapsed 00:00:01.26

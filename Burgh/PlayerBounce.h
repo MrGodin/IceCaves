@@ -22,5 +22,5 @@ public:
 	virtual void OnCtrlDirChange(TDirection d)override;
 	virtual void OnCtrlDirRelease()override;
 	virtual void OnCtrlJumpPress()override;
-	virtual void OnCollision(const RectF rect, const RectF FRect)override;
+	virtual void OnCollision(const RectF &rect, const RectF &FRect)override;
 };

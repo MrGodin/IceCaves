@@ -159,6 +159,12 @@
     <ClCompile Include="EnemyMoveLeft.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyMoveRight.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Dozer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utils.h">
@@ -303,6 +309,12 @@
       <Filter>Objects\GUI\Headers</Filter>
     </ClInclude>
     <ClInclude Include="EnemyMoveLeft.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyMoveRight.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Dozer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

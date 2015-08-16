@@ -16,5 +16,5 @@ public:
 	virtual void OnCtrlDirRelease()override;
 	virtual void OnCtrlJumpPress()override;
 	virtual void OnUnsupported()override;
-	virtual void OnCollision(const RectF rect, const RectF FRect)override;
+	virtual void OnCollision(const RectF &rect, const RectF &FRect)override;
 };

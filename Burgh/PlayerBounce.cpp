@@ -46,7 +46,7 @@ void PlayerBounce::OnCtrlJumpPress()
 	Transition(new PlayerJump(pCore, isMoving, true, pCore->Vel.y));
 }
 
-void PlayerBounce::OnCollision(const RectF rect, const RectF FRect)
+void PlayerBounce::OnCollision(const RectF &rect, const RectF &FRect)
 {
 
 	if (pCore->Vel.x > 0.0f)

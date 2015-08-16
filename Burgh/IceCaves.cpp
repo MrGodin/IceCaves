@@ -29,9 +29,15 @@ IceCaves::IceCaves(HINSTANCE hInstance, WCHAR* winCaption, D3DDEVTYPE devType, D
 	pCurrMap = new TTileMap(TString("media\\levelsprite2.png"), pLevel2String, iLevel2Width, iLevel2Height, 64, 64);
 	pCurrMap->Create(pLevel2String,0,0);
 	cam.SetBindingBox(pCurrMap->GetBoundary());
+
 	player = new Player(&cam,32, 32, { 100.0f, 300.0f });
 	player->SetImages(pCurrMap->SpriteSheet());
-	player->SetImageindex(23);
+	player->SetImageindex(23);	
+	
+	pDozer = new Dozer(cam, 64, 64, Vec2F(400.0f, 300.0f));
+	pDozer->SetImages(pCurrMap->SpriteSheet());
+	pDozer->SetImageindex(33);
+	
 	TPort.SetDevice(gd3dDevice);
 	TPort.ResetCenter(GameState.backBufferWidth, GameState.backBufferHeight, 1024, 600);
 	buildBackGround();
@@ -325,7 +331,7 @@ void IceCaves::onResetDevice()
 
 void IceCaves::updateScene(float dt)
 {
-#ifdef M_DEBUG
+#ifdef _DEBUG
 	dt = 1.0f / 60.0f;
 #endif
 
@@ -334,9 +340,15 @@ void IceCaves::updateScene(float dt)
 	if (GameState.pWindow)
 	   GameState.pWindow->Update();
 	player->Update(dt);
+
+	pDozer->Update(dt);
+
 	cam.SetPosition(player->GetPos().x , player->GetPos().y );
 	pCurrMap->Update(cam, dt,TPort.GetX(),TPort.GetY());
+
 	pCurrMap->DoCollision(player);
+	pCurrMap->DoCollision(pDozer);
+
 	pCurrMap->DoSupport(player);
 	bkGround->Update(dt);
 	
@@ -376,7 +388,8 @@ void IceCaves::drawScene()
 		pMapSprite->Begin(D3DXSPRITE_ALPHABLEND);
 		pCurrMap->Draw();
 		player->Rasterize();
-	
+		pDozer->Rasterize();
+		
 		pMapSprite->End();
 		
 		pGuiSprite->Begin(D3DXSPRITE_ALPHABLEND);

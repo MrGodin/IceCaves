@@ -1,5 +1,3 @@
-
-
 #pragma once
 #include "ObjectState.h"
 
@@ -22,5 +20,5 @@ public:
 	virtual void OnCtrlDirRelease()override;
 	virtual void OnCtrlJumpRelease()override;
 	virtual void OnCtrlJumpPress()override;
-	virtual void OnCollision(const RectF rect, const RectF FRect)override;
+	virtual void OnCollision(const RectF &rect, const RectF &FRect)override;
 };

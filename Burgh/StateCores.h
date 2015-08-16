@@ -38,6 +38,9 @@ public:
 	//BiDirection dir;
 	Vec2F pos;
 	Vec2F vel;
+	Vec2F accel;
+	Vec2F maxSpeed;
+	float mass, decayX;
 	float thrust;
 	float traction;
 	float bounce_absorb;
@@ -46,5 +49,7 @@ public:
 	float hit_points;
 	float power;
 	class ObjectState* state = NULL;
+	TDirection dir;
+	int width, height;
 
 };

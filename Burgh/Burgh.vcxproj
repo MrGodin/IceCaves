@@ -85,7 +85,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Dozer.cpp" />
     <ClCompile Include="EnemyMoveLeft.cpp" />
+    <ClCompile Include="EnemyMoveRight.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GuiButton.cpp" />
     <ClCompile Include="GuiCheckBox.cpp" />
@@ -115,7 +117,9 @@
     <ClInclude Include="background.h" />
     <ClInclude Include="BiDirection.h" />
     <ClInclude Include="Color.h" />
+    <ClInclude Include="Dozer.h" />
     <ClInclude Include="EnemyMoveLeft.h" />
+    <ClInclude Include="EnemyMoveRight.h" />
     <ClInclude Include="fps.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="grid.h" />

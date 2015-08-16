@@ -17,7 +17,7 @@ public:
 	virtual void OnCtrlJumpPress(){}
 	virtual void OnCtrlJumpRelease(){}
 	virtual void OnUnsupported(){}
-	virtual void OnCollision(const RectF rect, const RectF FRect){}
+	virtual void OnCollision(const RectF &rect, const RectF &FRect){}
 };
 
 class PlayerState : public ObjectState
@@ -48,5 +48,10 @@ public:
 		pCore(core)
 	{
 
+	}
+	void Transition(ObjectState* state) override
+	{
+		pCore->state = state;
+		delete this;
 	}
 };

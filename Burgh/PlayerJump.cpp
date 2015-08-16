@@ -58,7 +58,7 @@ void PlayerJump::OnCtrlJumpRelease()
 }
 
 
-void PlayerJump::OnCollision(const RectF rect, const RectF FRect)
+void PlayerJump::OnCollision(const RectF &rect, const RectF &FRect)
 {
 
 	if (pCore->Vel.x > 0.0f)
@@ -75,6 +75,7 @@ void PlayerJump::OnCollision(const RectF rect, const RectF FRect)
 
 				pCore->Pos.y -= py;
 				//pCore->Vel.y = 0.0f;
+				
 				float initVel = pCore->Vel.y / pCore->mass;
 				if (initVel > 2.0f)
 					Transition(new PlayerBounce(pCore, false, initVel));
