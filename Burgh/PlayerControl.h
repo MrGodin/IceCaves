@@ -12,12 +12,20 @@ public:
 	void Poll(Player* player)
 	{
 		if (IsUpPressed())
+		{
+			player->SetImageindex(24);
 			player->GetState()->OnCtrlJumpPress();
+		}
 		if (IsLeftPressed())
+		{
+			player->SetImageindex(26);
 			player->GetState()->OnCtrlDirChange(TDirection::Left());
+		}
 		if (IsRightPressed())
+		{
+			player->SetImageindex(25);
 			player->GetState()->OnCtrlDirChange(TDirection::Right());
-
+		}
 		if (IsKeyLastUp(VK_LEFT) || IsKeyLastUp(VK_RIGHT) || IsKeyLastUp(VK_UP))
 		{
 			if (IsKeyLastUp(VK_UP))
@@ -25,6 +33,7 @@ public:
 			else
 			    player->GetState()->OnCtrlDirRelease();
 			lastKeyUp = 0x0;
+			player->SetImageindex(23);
 		}
 		
 

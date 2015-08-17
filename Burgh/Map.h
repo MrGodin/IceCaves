@@ -460,19 +460,18 @@ public:
 				case '2':
 				case '3':
 				case '4':
-
+				case 'A':
+				{
+					pTiles[index]->AddType(ttPassable);
+					pTiles[index]->AddType(ttPrize);
+					pTiles[index]->ImageIndex(29);
+					break;
+				}
 				case 'X':
 				{
 					pTiles[index]->AddType(ttPassable);
 					pTiles[index]->AddType(ttPrize);
 					pTiles[index]->ImageIndex(19);
-
-
-
-					/* using memcpy to copy string: */
-
-
-					//sprintf_s(p ,"%s", "X");
 				}
 				break;
 				case '?':

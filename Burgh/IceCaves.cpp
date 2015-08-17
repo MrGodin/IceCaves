@@ -43,7 +43,7 @@ IceCaves::IceCaves(HINSTANCE hInstance, WCHAR* winCaption, D3DDEVTYPE devType, D
 	player->SetImageindex(23);
 	TPort.SetDevice(gd3dDevice);
 	TPort.ResetCenter(GameState.backBufferWidth, GameState.backBufferHeight, 1024, 600);
-	
+	Cpu.Initialize();
 	buildBackGround();
 	buildStatDisplay();
 	onResetDevice();
@@ -52,7 +52,10 @@ IceCaves::IceCaves(HINSTANCE hInstance, WCHAR* winCaption, D3DDEVTYPE devType, D
 
 IceCaves::~IceCaves()
 {
-	
+	Cpu.Shutdown();
+	if (player)
+		SaveCurrentPlayerFile();
+
 	SAFE_DELETE(GameState.pWindow);
 	SAFE_DELETE(pCurrMap);
 	SAFE_DELETE(player);
@@ -310,7 +313,7 @@ void IceCaves::updateScene(float dt)
 #ifdef M_DEBUG
 	dt = 1.0f / 60.0f;
 #endif
-
+	Cpu.Frame();
 	
 	switch (GameState.game_state)
 	{
@@ -324,7 +327,7 @@ void IceCaves::updateScene(float dt)
 			pCurrMap->DoCollision(player);
 			pCurrMap->DoSupport(player);
 			bkGround->Update(dt);
-			statDisplay->Update(Frames.Update(dt), player->GetPos(),mTime);
+			statDisplay->Update(Frames.Update(dt),(float)Cpu.GetCpuPercentage(), player->GetPos(),mTime);
 		}
 		case gsPaused:
 		{
@@ -370,9 +373,10 @@ void IceCaves::drawScene()
 	{
 		
 		pGuiSprite->Begin(D3DXSPRITE_ALPHABLEND);
-		  
-		  if (GameState.pWindow)
+		bkGround->Rasterize();
+		if (GameState.pWindow)
 			  GameState.pWindow->Rasterize();
+			
 		pGuiSprite->End();
 		
 		
@@ -380,14 +384,16 @@ void IceCaves::drawScene()
 	}
 	else if (GameState.game_state == gsRunning)
 	{
-		pMapSprite->Begin(D3DXSPRITE_ALPHABLEND);
-		bkGround->Rasterize();
-		pCurrMap->Draw();
-		
-		player->Rasterize();
-		pMapSprite->End();
 		pGuiSprite->Begin(D3DXSPRITE_ALPHABLEND);
-		statDisplay->Rasterize();
+		  bkGround->Rasterize();
+		pGuiSprite->End();
+
+		pMapSprite->Begin(D3DXSPRITE_ALPHABLEND);
+		 pCurrMap->Draw();
+		 player->Rasterize();
+		 pMapSprite->End();
+		 pGuiSprite->Begin(D3DXSPRITE_ALPHABLEND);
+		 statDisplay->Rasterize();
 		pGuiSprite->End();
 	}
 
@@ -474,11 +480,16 @@ void IceCaves::buildStatDisplay()
 	desc.baseColor = QVCBlackTrans1;
 	desc.innerBorderColor = desc.outerBorderColor = QVCBlue;
 	statDisplay = new StatDisplay(desc);
-	statDisplay->SetFont(pFont[0]);
+	statDisplay->SetFont(pFont[3]);
 	statDisplay->Create();
 }
 
 //===========================================
+void IceCaves::SaveCurrentPlayerFile()
+{
+	playerFileData data = player->GetFileData();
+	fileHandler.WritePlayerFile(data.filename, data);
+}
 void IceCaves::SetVSync(bool val)
 {
 	
@@ -515,34 +526,40 @@ void IceCaves::LoadPlayerListBox(GuiListBox* lb)
 		lb->AddString(str);
 		
 	}
-	lb->UpdateStrings(0);
+	lb->UpdateStrings(0);// set to top-most ie: index 0
 }
 void IceCaves::LoadPlayer(TString ID)
 {
 	TString filename = playerPath; filename += ID; filename += fileExt;
 	playerFileData playerData;
-	fileHandler.LoadPlayerFile(filename, playerData);
-	player->SetFileData(playerData);
+	if (fileHandler.LoadPlayerFile(filename, playerData))
+	{
+		player->SetFileData(playerData);
+		GameState.gameLoaded = true;
+		ResumeGame();
+	}
 }
 void IceCaves::FillPlayerListBoxDisplayPanel(TString ID, GuiDisplayPanel* dPanel)
 {
 	TString filename = playerPath; filename += ID; filename += fileExt;
 	playerFileData playerData;
-	//fileHandler.LoadPlayerFile(filename, playerData);
 
-	TString str = "Level : ";str += TString(playerData.level);
-	dPanel->SetDisplayText(str, 0, 0);
-	str = "Tokens : "; str += TString(playerData.tokens);
-	dPanel->SetDisplayText(str, 1, 0);
-	str = "Shields : "; str += TString((float)playerData.shieldstrength);
-	dPanel->SetDisplayText(str, 2, 0);
-	str = "Traction : "; str += TString(playerData.traction);
-	dPanel->SetDisplayText(str, 3, 0);
-	str = "Thrust : "; str += TString(playerData.thrust);
-	dPanel->SetDisplayText(str, 4, 0);
-	str = "Speed : "; str += TString(playerData.speed);
-	dPanel->SetDisplayText(str, 0, 1);
+	if (fileHandler.LoadPlayerFile(filename, playerData))
+	{
 
+		TString str = "Level : "; str += TString(playerData.level);
+		dPanel->SetDisplayText(str, 0, 0);
+		str = "Tokens : "; str += TString(playerData.tokens);
+		dPanel->SetDisplayText(str, 1, 0);
+		str = "Shields : "; str += TString((float)playerData.shieldstrength);
+		dPanel->SetDisplayText(str, 2, 0);
+		str = "Traction : "; str += TString(playerData.traction);
+		dPanel->SetDisplayText(str, 3, 0);
+		str = "Thrust : "; str += TString(playerData.thrust);
+		dPanel->SetDisplayText(str, 4, 0);
+		str = "Speed : "; str += TString(playerData.speed);
+		dPanel->SetDisplayText(str, 0, 1);
+	}
 }
 void IceCaves::CreateNewPlayer(TString name)
 {
@@ -550,10 +567,12 @@ void IceCaves::CreateNewPlayer(TString name)
 	playerdata.shieldstrength = 100;
 	playerdata.thrust = 0.0f;
 	playerdata.tokens = 0;
-	playerdata.traction = 989.0f;
+	playerdata.traction = 0.989f;
 	playerdata.accX = 2.0f;
 	playerdata.accY = 2.0f;
 	playerdata.speed = 4.0f;
+	playerdata.posX = 100.0f;
+	playerdata.posY = 300.0f;
 	name.Trim();
 	TString filename = playerPath; filename += name; filename += fileExt;
 	sprintf_s(playerdata.filename, "%s", filename.c_str());

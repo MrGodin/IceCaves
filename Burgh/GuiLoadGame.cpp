@@ -233,7 +233,7 @@ UINT GuiLoadGame::msgProcState(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPara
 					if (lb)
 					{
 						TString str = lb->SelectedItem()->GetText();
-						TGame::gd3dApp->LoadGame(str);
+						TGame::gd3dApp->LoadPlayer(str);
 						return 0;
 					}
 				}

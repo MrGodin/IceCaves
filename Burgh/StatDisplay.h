@@ -25,10 +25,13 @@ public:
 		SAFE_DELETE(pWorldPos);
 		SAFE_DELETE(pGameTime);
 	}
-	void Update(float fps,Vec2F pos,float gt)
+	void Update(float fps,int cpu,Vec2F pos,float gt)
 	{
-		TString str = "Fps: ";
+		TString str = "Performance :-> Fps: ";
 		str += TString(fps);
+		str += TString(" <-> Cpu: ");
+		str += TString(cpu);
+		str += TString("%");
 		pFps->SetText(str.w_char());
 		str = "Player Pos X :(";
 		str += TString(pos.x);

@@ -35,8 +35,13 @@ bool GuiWindow::OnMouseMove(GuiEvent& Event)
 			try	{ btn = (GuiButton*)obj; }
 			catch (...)	{ btn = NULL; }
 			if (btn)
-			  btn->OnMouseMove(Event);
-				
+			{
+				if (btn->OnMouseMove(Event))
+				{
+					Event.Sender = btn;
+					return true;
+				};
+			}
 			
 		}
 		break;
@@ -51,7 +56,7 @@ bool GuiWindow::OnMouseMove(GuiEvent& Event)
 		{
 			GuiButtonContainer* BtnC = (GuiButtonContainer*)obj;
 			if (BtnC)
-			    BtnC->OnMouseMove(Event);
+			   BtnC->OnMouseMove(Event);
 		
 		}
 		break;

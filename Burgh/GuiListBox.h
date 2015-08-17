@@ -81,6 +81,7 @@ public:
 	UINT StringCount(){ return strList.size(); }
 	UINT AvaliableStringCount(){ return Desc.maxItemsInList - strList.size(); }
 	TString Name(){ return Desc.name; }
+	// Add string to listbox string list
 	bool AddString(TString str)
 	{ 
 		if ( strList.size() >= (UINT)Desc.maxItemsInList)
@@ -91,6 +92,7 @@ public:
 		return true;
 	}
 	TString GetString(UINT index){ return strList[index]; }
+	// Set strings to display based on index
 	void UpdateStrings(UINT index)
 	{
 		UINT count = strList.size();

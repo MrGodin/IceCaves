@@ -18,6 +18,8 @@
 #include "fps.h"
 #include "StatDisplay.h"
 #include "FileHandler.h"
+#include "FindFiles.h"
+#include "cpu.h"
 
 const TString dataPath = "data\\";
 const TString playerPath = "data\\players\\";
@@ -50,6 +52,8 @@ public:
 	{
 		Resolutions.GetCurrentScreenResolution(CurrScreenDesc);
 	}
+	void SaveCurrentPlayerFile();
+
 	void buildBackGround();
 	void buildStatDisplay();
 	void getWorldPickingRay(D3DXVECTOR3& originW, D3DXVECTOR3& dirW);
@@ -73,6 +77,7 @@ private:
 	Fps Frames;
 	StatDisplay* statDisplay = NULL;
 	FileHandler fileHandler;
-	
+	FileFinder  fileFinder;
+	CpuClass Cpu;
 	
 };

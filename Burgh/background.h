@@ -16,14 +16,7 @@ public:
 	}
 	virtual HRESULT Rasterize()
 	{
-		
-		pDevice->SetTexture(0, frameDesc.pTexture);
-		pDevice->SetFVF(D3DFVF_CUSTOMVERTEX);
-		pDevice->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, frame, sizeof(tVertex));
-		pDevice->SetFVF(D3DFVF_CUSTOMLINEVERTEX);
-		pDevice->DrawPrimitiveUP(D3DPT_LINELIST, 8, lines1, sizeof(tLineVertex));
-		pDevice->DrawPrimitiveUP(D3DPT_LINELIST, 8, lines2, sizeof(tLineVertex));
-		
+		DrawFrame();
 		return S_OK;
 	}
 	void Redraw(long vpX,long vpY,long screenHeight, long screenWidth)

@@ -36,7 +36,7 @@ public:
 		SAFE_DELETE(pCaptionText);
 	}
 	UINT GetAction(){ return Desc.Action; }
-	
+	UINT GetGroupIndex(){ return Desc.Index; }
 	virtual void SetFont(ID3DXFont* f)override
 	{
 		pFont = f;

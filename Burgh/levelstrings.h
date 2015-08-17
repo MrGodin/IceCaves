@@ -39,7 +39,7 @@ B        ZZZ               P  P       B    Z    B   S  P                X       
 B            ZZ          ZZZZZZZ      QZZR   Z ZB     SSSS                    LWWWWR                           ZZZZZ      ZZZZ   B\
 B        P ZZ           P      P         QZZ    B                      SSS    QQQQQQ                                  Z          B\
 B     P  S       P  LZZZZZZSZZZZZZR          ZCCBCC   P     LZZZR                     LR                       C LR     LR       B\
-B     LR    PP  ZZZZB 3          BBR      LZZQQQQQQZZZZZZZZZQ   QZR         LWR     LBBBR                    LWBWBBWR  LZZZRZ    B\
+B     LR    PP  ZZZZB P          BBR      LZZQQQQQQZZZZZZZZZQ   QZR         LWR     LBBBR                    LWBWBBWR  LZZZRZ    B\
 BWWWWWBBWWWWWWWWBBBBBWWWWWWWWWWWWBBBWWWWWWQ                       QWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWBBBBBBBBWWWWWWWZ    B\
 BQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ                         QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ    BB\
 B                                                                                   Q                                         Z  B\
@@ -47,7 +47,7 @@ B                                                                               
 B                                                                             ZZR   QQ                        ZZZZ               B\
 B                                                      ZZZZ                 W   QR  QQQ                             SSSSS        B\
 B     ZZ                                                                    Q    QR   QQ        X                          ZZ    B\
-B        ZZZ                 P                     S   X                WW       XQR    Q       Z     ZSSZ       P          X    B\
+B        ZZZ                 P                     S   X                WW      A QR    Q       Z     ZSSZ       P          X    B\
 B            ZZ          ZZZZZZZ      ZZZZ            SSSS              QQ    LWWWWQRR                         ZZZZZ      ZZZZ   B\
 B          ZZ          P                        P             P      ZZ       QQQQQ QQR                               Z          B\
 B        S          LZZZZZZSZZZZZZR           CCCCC         LWWWR                     LR                                LR       B\

@@ -94,7 +94,7 @@ public:
 		core.shield_strength = fileData.shieldstrength;
 		core.thrust = fileData.thrust;
 		core.tokens = fileData.tokens;
-		
+		core.Pos = Vec2F(fileData.posX, fileData.posY);
 	}
 	playerFileData GetFileData()
 	{
