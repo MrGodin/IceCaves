@@ -22,8 +22,6 @@ public:
 	//============
 	UINT Type(){ return type; }
 	virtual class ObjectState* GetState() = 0;
-	virtual Vec2F GetVel() = 0;
-	virtual Vec2F GetPos() = 0;
 	//=============
 	static void SetDrawTools(IDirect3DDevice9* dev,ID3DXSprite* sprite)
 	{ 

@@ -8,7 +8,7 @@ void GuiStartMenu::CreateGuiWindow()
 {
 	wndDesc.baseColor = QVCWhite;
 	wndDesc.height =  256;
-	wndDesc.width =  1024 / 2;
+	wndDesc.width =  1024 / 2.5L;
 	wndDesc.hoverColor = QVCWhite;
 	wndDesc.innerBorderColor = wndDesc.outerBorderColor = QVCFrameGrey;
 	wndDesc.originX =  (core->backBufferWidth / 2) - (wndDesc.width / 2);
@@ -210,6 +210,7 @@ UINT GuiStartMenu::msgProcState(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 		{
 			switch (E.Sender->Type())
 			{
+			
 			case GUIOBJECT_BUTTON:
 			{
 				GuiButton* btn = (GuiButton*)E.Sender;

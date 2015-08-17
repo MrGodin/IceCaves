@@ -88,6 +88,15 @@
     <Filter Include="Objects\Files">
       <UniqueIdentifier>{4af7bc7f-8ddc-4480-a200-a43b2765f372}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Objects\Collisions">
+      <UniqueIdentifier>{7c8d4941-2d04-4282-a473-7ddb2ce0ea68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Collisions\Headers">
+      <UniqueIdentifier>{0be3de83-5f2e-4a15-b628-1f019411fb93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Collisions\Source">
+      <UniqueIdentifier>{c6b12ad3-c4a5-4a7e-9211-6e325e5c3a72}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -176,6 +185,9 @@
     </ClCompile>
     <ClCompile Include="cpu.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>Objects\Collisions\Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -349,6 +361,12 @@
     </ClInclude>
     <ClInclude Include="cpu.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Objects\Collisions\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="CollidableObject.h">
+      <Filter>Objects\Game Pieces</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

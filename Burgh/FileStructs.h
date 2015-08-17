@@ -70,4 +70,6 @@ struct gameData
 	char games[maxPlayersInFile][maxPlayerNameLength + 1];
 	int level = 0;
 	bool saved = false;
+	bool fullscreen = false;
+	bool vsync = true;
 };

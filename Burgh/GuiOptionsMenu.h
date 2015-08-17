@@ -11,7 +11,7 @@ protected:
 	virtual void CreateChildren();
 	virtual void CreateGuiWindow();
 	bool vSync = false;
-	bool vTrip = false;
+	bool fullscreen = false;
 public:
 	GuiOptionsMenu(GuiCore* core)
 		:

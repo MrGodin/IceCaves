@@ -81,6 +81,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Collision.cpp" />
     <ClCompile Include="cpu.cpp" />
     <ClCompile Include="FileHandler.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -115,6 +116,8 @@
     <ClInclude Include="2dcamera.h" />
     <ClInclude Include="background.h" />
     <ClInclude Include="BiDirection.h" />
+    <ClInclude Include="CollidableObject.h" />
+    <ClInclude Include="Collision.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="cpu.h" />
     <ClInclude Include="FileHandler.h" />

@@ -47,7 +47,13 @@ IceCaves::IceCaves(HINSTANCE hInstance, WCHAR* winCaption, D3DDEVTYPE devType, D
 	buildBackGround();
 	buildStatDisplay();
 	onResetDevice();
-	//enableFullScreenMode(true);
+	if (fileHandler.GameData()->vsync)
+		SetVSync(true);
+	else
+		SetVSync(false);
+
+	if (fileHandler.GameData()->fullscreen)
+	    enableFullScreenMode(true);
 }
 
 IceCaves::~IceCaves()
@@ -593,4 +599,14 @@ void IceCaves::CreateNewPlayer(TString name)
 	fileHandler.WriteGameFile(gameDataFileName);
 	SAFE_DELETE(GameState.pWindow);
 	GameState.pWindow = new GuiLoadGame(&GameState);
+}
+void IceCaves::SetOptions(bool vs, bool fs)
+{
+	fileHandler.GameData()->fullscreen = fs;
+	fileHandler.GameData()->vsync = vs;
+}
+void IceCaves::GetOptions(bool& vs, bool& fs)
+{
+	vs = fileHandler.GameData()->vsync;
+	fs = fileHandler.GameData()->fullscreen;
 }

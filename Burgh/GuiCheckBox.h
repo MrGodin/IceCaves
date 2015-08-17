@@ -8,7 +8,7 @@ class GuiCheckBox : public GuiControl
 protected:
 	TString checkText = "X";
 	TString caption;
-	DWORD checkTextColor = Color(255, 0, 0, 0);
+	DWORD checkTextColor = Color(255, 0,0,0);
 	DWORD captionColor = Color(255, 255, 255, 255);
 	RECT drawTextRect;
 	RECT captionRect;
@@ -35,6 +35,7 @@ public:
 		pBox->SetFont(pFont);
 
 
+		
 	}
 public:
 	GuiCheckBox(GuiFrameDesc desc,UINT in_action)
@@ -49,6 +50,14 @@ public:
 		SAFE_DELETE(pBox);
 	}
 	bool Checked(){ return checked; }
+	void Checked(bool val)
+	{ 
+		checked = val; 
+		if (checked)
+			pBox->SetColor(QVCGreen);
+		else
+			pBox->SetColor(QVCWhite);
+	}
 	UINT Action(){ return action; }
 	void SetCaption(TString capt){ caption = capt; }
 	virtual bool OnMouseClick(GuiEvent& Event)override;

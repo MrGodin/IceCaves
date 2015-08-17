@@ -3,7 +3,7 @@
 
 #include "GuiState.h"
 
-static TString strMessages[5] = { "Create new game or play a saved game", "Select game options", "Resume pame play", "Get Online Help", "Exit To Windows, Your data will be saved" };
+static TString strMessages[5] = { "Create a new game or play a saved game", "Select game options", "Resume game play", "Get Online Help", "Exit To Windows ..." };
 
 class GuiStartMenu : public GuiState
 {

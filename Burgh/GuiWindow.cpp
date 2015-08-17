@@ -56,7 +56,8 @@ bool GuiWindow::OnMouseMove(GuiEvent& Event)
 		{
 			GuiButtonContainer* BtnC = (GuiButtonContainer*)obj;
 			if (BtnC)
-			   BtnC->OnMouseMove(Event);
+			   if(BtnC->OnMouseMove(Event))
+				   return true;
 		
 		}
 		break;

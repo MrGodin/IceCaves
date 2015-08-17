@@ -52,6 +52,8 @@ public:
 	{
 		Resolutions.GetCurrentScreenResolution(CurrScreenDesc);
 	}
+	virtual void SetOptions(bool vs, bool fs)override;
+	virtual void GetOptions(bool& vs, bool& fs)override;
 	void SaveCurrentPlayerFile();
 
 	void buildBackGround();

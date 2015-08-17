@@ -104,10 +104,17 @@ bool GuiListBox::OnMouseClick(GuiEvent& Event)
 			case GUIOBJECT_LISTBOX_ITEM:
 			{
 				GuiListItem* item = (GuiListItem*)obj;
-				if(item->OnMouseClick(Event))
+				UINT len = wcslen(item->GetText().w_char());
+				if (len > 0 && item != pSelectedItem)
 				{
-					pSelectedItem = (GuiListItem*)Event.Sender;
-					
+					if (item->OnMouseClick(Event))
+					{
+						if (pSelectedItem)
+							pSelectedItem->SetSelected(false);
+
+						pSelectedItem = (GuiListItem*)Event.Sender;
+
+					}
 				}
 				
 			}
