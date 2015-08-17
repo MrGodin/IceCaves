@@ -29,12 +29,12 @@ IceCaves::IceCaves(HINSTANCE hInstance, WCHAR* winCaption, D3DDEVTYPE devType, D
 	pCurrMap = new TTileMap(TString("media\\levelsprite2.png"), pLevel2String, iLevel2Width, iLevel2Height, 64, 64);
 	pCurrMap->Create(pLevel2String,0,0);
 	cam.SetBindingBox(pCurrMap->GetBoundary());
-
-	player = new Player(&cam,32, 32, { 100.0f, 300.0f });
+	// 100 300
+	player = new Player(&cam,32, 32, { 1815.0f, 456.0f });
 	player->SetImages(pCurrMap->SpriteSheet());
 	player->SetImageindex(23);	
 	
-	pDozer = new Dozer(cam, 64, 64, Vec2F(400.0f, 300.0f));
+	pDozer = new Dozer(cam, 64, 52, Vec2F(1536.0f, 584.0f));
 	pDozer->SetImages(pCurrMap->SpriteSheet());
 	pDozer->SetImageindex(33);
 	

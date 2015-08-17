@@ -156,13 +156,13 @@
     <ClCompile Include="GuiCheckBox.cpp">
       <Filter>Objects\GUI\Source</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyMoveLeft.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyMoveRight.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Dozer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DozerMoveLeft.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DozerMoveRight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -308,13 +308,13 @@
     <ClInclude Include="GuiCheckBox.h">
       <Filter>Objects\GUI\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyMoveLeft.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyMoveRight.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Dozer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DozerMoveLeft.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DozerMoveRight.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

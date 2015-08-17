@@ -1,11 +1,11 @@
 #pragma once
 #include "ObjectState.h"
 #include "StateCores.h"
-class EnemyMoveLeft : public EnemyState
+class DozerMoveLeft : public EnemyState
 {
 public:
-	EnemyMoveLeft(EnemyCore *core);
-	~EnemyMoveLeft();
+	DozerMoveLeft(EnemyCore *core);
+	~DozerMoveLeft();
 
 	void Update(float dt)override;
 	void OnCtrlDirChange(TDirection d)override;

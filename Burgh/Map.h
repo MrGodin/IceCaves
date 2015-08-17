@@ -221,7 +221,7 @@ public:
 			}
 		}
 	}*/
-	bool GetCollisionRectSingle(RectF cRect, RectF& rect, Vec2F& vel)
+	bool GetCollisionRectSingle(RectF &cRect, RectF& rect, Vec2F& vel)
 	{
 
 		if (vel.x > 0.0f)
@@ -354,9 +354,7 @@ public:
 	bool  DoCollision(GameObject* sprite)
 	{
 		RectF rect;
-		RectF rf = sprite->GetCRect();
-
-		
+		RectF sprRect = sprite->GetCRect();		
 		Player* pl = NULL;
 		bool collided = false;
 		/*
@@ -399,21 +397,36 @@ public:
 			}
 		}*/
 		Vec2F vel = sprite->GetVel();
-		while (GetCollisionRectSingle(sprite->GetCRect(), rect, vel))
+
+		bool hasCollided = GetCollisionRectSingle(sprRect, rect, vel);
+
+		if (hasCollided)
 		{
-
-
 			if (sprite->GetState())
 			{
-				sprite->GetState()->OnCollision(rect, sprite->GetCRect());
-
+				sprite->GetState()->OnCollision(rect, sprRect);
+				collided = true;
 			}
-			
-			collided = true;
-
-			//float dex = TransformPlayerPositionX(sprite->GetCore()->Pos.x);
-			//sprite->GetCore()->sCRect.Translate(dex, sprite->GetCore()->Pos.y);
 		}
+
+		//while (GetCollisionRectSingle(sprite->GetCRect(), rect, vel))
+		//{
+		//
+		//
+		//	if (sprite->GetState())
+		//	{
+		//		sprite->GetState()->OnCollision(rect, sprite->GetCRect());
+		//
+		//	}
+		//	
+		//	collided = true;
+		//
+		//	//float dex = TransformPlayerPositionX(sprite->GetCore()->Pos.x);
+		//	//sprite->GetCore()->sCRect.Translate(dex, sprite->GetCore()->Pos.y);
+		//}
+		//
+		//collided = true;
+		
 		return collided;
 	}
 	HRESULT Create(char* mapStr,long dX,long dY)
