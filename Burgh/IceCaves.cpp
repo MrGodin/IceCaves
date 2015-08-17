@@ -30,13 +30,26 @@ IceCaves::IceCaves(HINSTANCE hInstance, WCHAR* winCaption, D3DDEVTYPE devType, D
 	pCurrMap->Create(pLevel2String,0,0);
 	cam.SetBindingBox(pCurrMap->GetBoundary());
 	// 100 300
-	player = new Player(&cam,32, 32, { 1815.0f, 456.0f });
+	player = new Player(&cam,32, 32, { 100.0f, 300.0f });
 	player->SetImages(pCurrMap->SpriteSheet());
 	player->SetImageindex(23);	
 	
-	pDozer = new Dozer(cam, 64, 52, Vec2F(1536.0f, 584.0f));
-	pDozer->SetImages(pCurrMap->SpriteSheet());
-	pDozer->SetImageindex(33);
+	pDozer = new Dozer*[8];
+	for (int i = 0; i < 8; ++i)
+	{
+		pDozer[i] = new Dozer(cam, 64, 52, Vec2F(1536.0f, 584.0f));
+		pDozer[i]->SetImages(pCurrMap->SpriteSheet());
+		pDozer[i]->SetImageindex(33);
+	}
+
+	pDozer[0]->SetPosition(Vec2F(23.0f, 8.0f));
+	pDozer[1]->SetPosition(Vec2F(8.0f, 10.0f));
+	pDozer[2]->SetPosition(Vec2F(99.0f, 10.0f));
+	pDozer[3]->SetPosition(Vec2F(22.0f, 20.0f));
+	pDozer[4]->SetPosition(Vec2F(109.0f, 22.0f));
+	pDozer[5]->SetPosition(Vec2F(21.0f, 32.0f));
+	pDozer[6]->SetPosition(Vec2F(90.0f, 34.0f));
+	pDozer[7]->SetPosition(Vec2F(100.0f, 34.0f));
 	
 	TPort.SetDevice(gd3dDevice);
 	TPort.ResetCenter(GameState.backBufferWidth, GameState.backBufferHeight, 1024, 600);
@@ -57,6 +70,7 @@ IceCaves::~IceCaves()
 
 	///DestroyAllVertexDeclarations();
 }
+
 LRESULT IceCaves::msgProc(UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	// Is the application in a minimized or maximized state?
@@ -244,6 +258,7 @@ LRESULT IceCaves::msgProc(UINT msg, WPARAM wParam, LPARAM lParam)
 	}
 	return DefWindowProc(mhMainWnd, msg, wParam, lParam);
 }
+
 HRESULT IceCaves::CreateFonts(UINT index, INT height, UINT style, WCHAR* name )
 {
 	return D3DXCreateFont(TGame::gd3dDevice, height, 0, style, 1, FALSE, DEFAULT_CHARSET,
@@ -251,6 +266,7 @@ HRESULT IceCaves::CreateFonts(UINT index, INT height, UINT style, WCHAR* name )
 		name, &pFont[index]);
 	
 };
+
 HRESULT IceCaves::CreateSprites()
 {
 	
@@ -341,25 +357,25 @@ void IceCaves::updateScene(float dt)
 	   GameState.pWindow->Update();
 	player->Update(dt);
 
-	pDozer->Update(dt);
+	for (int i = 0; i < 8; ++i)
+	{
+		pDozer[i]->Update(dt);
+	}
 
 	cam.SetPosition(player->GetPos().x , player->GetPos().y );
 	pCurrMap->Update(cam, dt,TPort.GetX(),TPort.GetY());
 
 	pCurrMap->DoCollision(player);
-	pCurrMap->DoCollision(pDozer);
-
+	
+	for (int i = 0; i < 8; ++i)
+	{
+		pCurrMap->DoCollision(pDozer[i]);
+	}
+	
 	pCurrMap->DoSupport(player);
 	bkGround->Update(dt);
 	
 	statDisplay->Update(player->GetCore()->thrust, player->GetPos());
-	
-		
-	
-
-		
-	
-	
 }
 
 void IceCaves::drawScene()
@@ -376,8 +392,7 @@ void IceCaves::drawScene()
 	
 	
 	if (pGuiSprite && GameState.game_state != gsRunning)
-	{
-		
+	{		
 		pGuiSprite->Begin(D3DXSPRITE_ALPHABLEND);
 		bkGround->Rasterize();
 		//if (GameState.pWindow)
@@ -388,16 +403,17 @@ void IceCaves::drawScene()
 		pMapSprite->Begin(D3DXSPRITE_ALPHABLEND);
 		pCurrMap->Draw();
 		player->Rasterize();
-		pDozer->Rasterize();
+
+		for (int i = 0; i < 8; ++i)
+		{
+			pDozer[i]->Rasterize();
+		}
 		
 		pMapSprite->End();
 		
 		pGuiSprite->Begin(D3DXSPRITE_ALPHABLEND);
 		  statDisplay->Rasterize();
 		pGuiSprite->End();
-		
-		
-		
 	}
 
 	HR(gd3dDevice->EndScene());
@@ -420,6 +436,7 @@ void IceCaves::HandleGameState()
 		break;
 	}
 }
+
 void IceCaves::buildFX()
 {
 	// Create the generic Light & Tex FX from a .fx file.
@@ -464,6 +481,7 @@ void IceCaves::buildFX()
 	HR(mGrassFX->SetTexture(mhGrassTex, mGrassTex));
 	*/
 }
+
 void IceCaves::buildBackGround()
 {
 	GuiFrame::GuiFrameDesc desc;
@@ -473,6 +491,7 @@ void IceCaves::buildBackGround()
 
 
 };
+
 void IceCaves::buildStatDisplay()
 {
 	GuiFrame::GuiFrameDesc desc;

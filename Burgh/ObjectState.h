@@ -6,12 +6,10 @@ class ObjectState
 protected:
 	virtual void Transition(ObjectState* state) = 0;
 	
-	
 public:
 	ObjectState(){}
 	
 	virtual void Update(float dt) = 0;
-
 	virtual void OnCtrlDirChange(TDirection d){}
 	virtual void OnCtrlDirRelease(){}
 	virtual void OnCtrlJumpPress(){}
@@ -48,6 +46,17 @@ public:
 		pCore(core)
 	{
 
+	}
+	EnemyState(EnemyState &&es)
+		:
+		pCore(es.pCore)
+	{
+		es.pCore = nullptr;
+	}
+	EnemyState &operator=(EnemyState &&es)
+	{
+		pCore = es.pCore;
+		es.pCore = nullptr;
 	}
 	void Transition(ObjectState* state) override
 	{

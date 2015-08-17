@@ -3,6 +3,7 @@
 #include "Utils.h"
 
 static const float gravity = 4.01f;
+class ObjectState;
 
 class PlayerCore 
 {
@@ -27,15 +28,17 @@ public:
 	float hit_points;
 	float power;
 	float mass;
-	class ObjectState* state = NULL;
+	ObjectState* state = NULL;
 
 };
 
 class EnemyCore
 {
 public:
-	EnemyCore(){}
-	//BiDirection dir;
+	EnemyCore();
+	EnemyCore(EnemyCore &&ec);
+	EnemyCore &operator=(EnemyCore&& ec);
+
 	Vec2F pos;
 	Vec2F vel;
 	Vec2F accel;
@@ -48,8 +51,7 @@ public:
 	float shield_strength;
 	float hit_points;
 	float power;
-	class ObjectState* state = NULL;
+	ObjectState* state;
 	TDirection dir;
 	int width, height;
-
 };

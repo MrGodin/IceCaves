@@ -11,7 +11,7 @@ Dozer::Dozer(Camera &cam, int Width, int Height, Vec2F &Position)
 	pCam(&cam)
 {
 	type = goTypeEnemy;
-	ZeroMemory(&core, sizeof(PlayerCore));
+	ZeroMemory(&core, sizeof(EnemyCore));
 	core.pos = Position;
 	core.accel.x = 0.05f;
 	core.maxSpeed.y = 326.0f;
@@ -25,6 +25,36 @@ Dozer::Dozer(Camera &cam, int Width, int Height, Vec2F &Position)
 	core.width = Width;
 	core.height = Height;
 	core.state = new DozerMoveRight(&core);
+}
+
+Dozer::Dozer(Dozer&& D)
+	:
+	pCam(D.pCam),
+	imageRect(D.imageRect),
+	pTexture(D.pTexture),
+	imageIndex(D.imageIndex),
+	core(D.core),
+	maxThrust(D.maxThrust)
+{
+
+}
+
+Dozer &Dozer::operator=(Dozer&& D)
+{
+	imageRect = D.imageRect;
+	imageIndex = 0;	
+	core = EnemyCore(D.core);
+	maxThrust = D.maxThrust;
+
+	pCam = D.pCam;
+	pTexture = D.pTexture;
+	//core.state = D.core.state;
+
+	D.pCam = nullptr;
+	D.pTexture = nullptr;
+	D.core.state = nullptr;
+
+	return (*this);
 }
 
 D3DXVECTOR3 Dozer::GetDrawPosition()
@@ -103,6 +133,13 @@ void Dozer::SetImages(TSpriteSheet* tex)
 	pTexture = tex; 
 }
 
+void Dozer::SetPosition(const Vec2F &Pos)
+{
+	core.pos.x = Pos.x * 64;
+	core.pos.y = Pos.y * 64;
+}
+
 Dozer::~Dozer()
 {
+	SAFE_DELETE(core.state);
 }

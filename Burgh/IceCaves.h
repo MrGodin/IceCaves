@@ -59,7 +59,7 @@ private:
 	//TViewport vp;
 	TTileMap* pCurrMap = NULL;
 	Player* player;
-	Dozer *pDozer;
+	Dozer **pDozer;
 	// Default texture if no texture present for subset.
 	IDirect3DTexture9* mWhiteTex = NULL;
 	Viewport TPort;

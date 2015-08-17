@@ -301,7 +301,7 @@ public:
 				{
 					for (int ix = TGameTile::GetIndexXBiasLeft(cRect.right), ixEnd = TGameTile::GetIndexXBiasRight(cRect.left);
 						ix >= ixEnd; ix--)
-					{
+					{						
 						TGameTile* t = GetTile(ix, iy);
 						if (t)
 						{
@@ -456,7 +456,7 @@ public:
 			for (int x = 0; x < iCols; x++)
 			{
 				const int index = y * iCols + x;
-
+				
 				EnTileType tType = ttPassable;
 				int image_row = 8;
 				int index2 = -1;

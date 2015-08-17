@@ -58,6 +58,8 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -116,6 +118,7 @@
     <ClCompile Include="PlayerMove.cpp" />
     <ClCompile Include="PlayerStand.cpp" />
     <ClCompile Include="StartMenu.cpp" />
+    <ClCompile Include="StateCores.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="2dcamera.h" />
