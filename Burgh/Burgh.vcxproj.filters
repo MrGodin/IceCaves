@@ -366,7 +366,7 @@
       <Filter>Objects\Collisions\Headers</Filter>
     </ClInclude>
     <ClInclude Include="CollidableObject.h">
-      <Filter>Objects\Game Pieces</Filter>
+      <Filter>Objects\Collisions\Headers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

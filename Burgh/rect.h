@@ -80,6 +80,15 @@ public:
 		right = __min(right, rect.right);
 		bottom = __min(bottom, rect.bottom);
 	}
+	inline bool OverLaps(Rect& rect)
+	{
+		return top < rect.bottom && bottom > rect.top && left < rect.right && right > rect.left;
+	}
+
+	inline bool Conatins(Vec2& pt)
+	{
+		return pt.x >= left && pt.x <= right && pt.y >= top && pt.y <= bottom;
+	}
 	template <class T2>
 	operator _Rect< T2 >() const
 	{
