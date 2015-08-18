@@ -18,7 +18,8 @@ public:
 	virtual HRESULT Rasterize(){ return 0; };
 	virtual void Update(float dt){};
 	virtual RectF GetCRect() = 0;
-	
+	virtual Vec2F GetPos() = 0;
+	virtual Vec2F GetVel() = 0;
 	//============
 	UINT Type(){ return type; }
 	virtual class ObjectState* GetState() = 0;

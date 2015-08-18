@@ -1,10 +1,43 @@
-﻿Build started 8/16/2015 9:55:17 PM.
+﻿Build started 8/16/2015 11:30:41 PM.
      1>Project "C:\Users\Ben\Desktop\IceCaves-master\Burgh\Burgh.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt GuiExitMenu.cpp
-         GuiExitMenu.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Collision.cpp Engine.cpp GameObject.cpp GuiInput.cpp GuiLoadGame.cpp GuiOptionsMenu.cpp GuiWindow.cpp IceCaves.cpp Main.cpp StartMenu.cpp
+         Main.cpp
+     1>c:\users\ben\desktop\icecaves-master\burgh\player.h(94): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\ben\desktop\icecaves-master\burgh\player.h(103): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+         IceCaves.cpp
+     1>c:\users\ben\desktop\icecaves-master\burgh\player.h(94): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\ben\desktop\icecaves-master\burgh\player.h(103): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\ben\desktop\icecaves-master\burgh\icecaves.cpp(336): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+         Generating Code...
+         Compiling...
+         StartMenu.cpp
+     1>c:\users\ben\desktop\icecaves-master\burgh\player.h(94): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\ben\desktop\icecaves-master\burgh\player.h(103): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\ben\desktop\icecaves-master\burgh\startmenu.cpp(11): warning C4244: '=' : conversion from 'long double' to 'long', possible loss of data
+         GuiWindow.cpp
+     1>c:\users\ben\desktop\icecaves-master\burgh\player.h(94): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\ben\desktop\icecaves-master\burgh\player.h(103): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+         GuiOptionsMenu.cpp
+     1>c:\users\ben\desktop\icecaves-master\burgh\player.h(94): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\ben\desktop\icecaves-master\burgh\player.h(103): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+         GuiLoadGame.cpp
+     1>c:\users\ben\desktop\icecaves-master\burgh\player.h(94): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\ben\desktop\icecaves-master\burgh\player.h(103): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+         GuiInput.cpp
+     1>c:\users\ben\desktop\icecaves-master\burgh\player.h(94): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\ben\desktop\icecaves-master\burgh\player.h(103): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+         GameObject.cpp
+         Engine.cpp
+     1>c:\users\ben\desktop\icecaves-master\burgh\player.h(94): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\ben\desktop\icecaves-master\burgh\player.h(103): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+         Collision.cpp
+         Generating Code...
+     1>c:\users\ben\desktop\icecaves-master\burgh\guiloadgame.cpp(305): warning C4715: 'GuiLoadGame::GetSelectedItem' : not all control paths return a value
+     1>c:\users\ben\desktop\icecaves-master\burgh\guiwindow.cpp(160): warning C4715: 'GuiWindow::OnKeyPress' : not all control paths return a value
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Ben\Desktop\IceCaves-master\Debug\Burgh.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86" d3d9.lib d3dx9.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Ben\Desktop\IceCaves-master\Debug\Burgh.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Ben\Desktop\IceCaves-master\Debug\Burgh.lib" /MACHINE:X86 Debug\cpu.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Ben\Desktop\IceCaves-master\Debug\Burgh.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86" d3d9.lib d3dx9.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Ben\Desktop\IceCaves-master\Debug\Burgh.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Ben\Desktop\IceCaves-master\Debug\Burgh.lib" /MACHINE:X86 Debug\Collision.obj
+         Debug\cpu.obj
          Debug\FileHandler.obj
          Debug\GameObject.obj
          Debug\GuiButton.obj
@@ -33,9 +66,10 @@
          Debug\PlayerMove.obj
          Debug\PlayerStand.obj
          Debug\StartMenu.obj
+         LINK : C:\Users\Ben\Desktop\IceCaves-master\Debug\Burgh.exe not found or not built by the last incremental link; performing full link
          Burgh.vcxproj -> C:\Users\Ben\Desktop\IceCaves-master\Debug\Burgh.exe
      1>Done Building Project "C:\Users\Ben\Desktop\IceCaves-master\Burgh\Burgh.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.68
+Time Elapsed 00:00:12.84
