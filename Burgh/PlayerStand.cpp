@@ -25,7 +25,7 @@ void PlayerStand::OnUnsupported()
 {
 	Transition(new PlayerJump(pCore, false, false));
 }
-void PlayerStand::OnCollision(const RectF &rect, const RectF &FRect)
+void PlayerStand::OnCollision(const RectF rect, const RectF FRect)
 {
 	if (pCore->Vel.x > 0.0f)
 	{

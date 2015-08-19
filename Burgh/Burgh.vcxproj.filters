@@ -85,6 +85,39 @@
     <Filter Include="Objects\Display">
       <UniqueIdentifier>{eba5da5f-912b-47d6-82fc-261d90bbd811}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Objects\Files">
+      <UniqueIdentifier>{4af7bc7f-8ddc-4480-a200-a43b2765f372}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Collisions">
+      <UniqueIdentifier>{7c8d4941-2d04-4282-a473-7ddb2ce0ea68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Collisions\Headers">
+      <UniqueIdentifier>{0be3de83-5f2e-4a15-b628-1f019411fb93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Collisions\Source">
+      <UniqueIdentifier>{c6b12ad3-c4a5-4a7e-9211-6e325e5c3a72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Enemies">
+      <UniqueIdentifier>{3646568d-f6d4-454e-9d99-2aba1bee3ac3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Enemies\Headers">
+      <UniqueIdentifier>{a601eb19-288c-4c2c-aced-a50fe54131e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Enemies\Headers\Dozer">
+      <UniqueIdentifier>{708417c3-09d6-446a-a4c7-38d813b99347}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Enemies\Headers\Dozer\States">
+      <UniqueIdentifier>{4c03f1e4-70ef-445f-b908-bcd4a8a3af08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Enemies\Source">
+      <UniqueIdentifier>{906c40ab-63a7-4be0-b58b-b4c6780c63ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Enemies\Source\Dozer">
+      <UniqueIdentifier>{63c37765-4718-4e6a-9afd-c970e05db207}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Enemies\Source\Dozer\States">
+      <UniqueIdentifier>{b896806e-3a6a-4319-a7d7-ab486c75cd35}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -156,17 +189,35 @@
     <ClCompile Include="GuiCheckBox.cpp">
       <Filter>Objects\GUI\Source</Filter>
     </ClCompile>
-    <ClCompile Include="Dozer.cpp">
+    <ClCompile Include="GuiSlider.cpp">
+      <Filter>Objects\GUI\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="FileHandler.cpp">
+      <Filter>Objects\Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiDisplayPanel.cpp">
+      <Filter>Objects\GUI\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiInput.cpp">
+      <Filter>Objects\GUI\State Machine\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiInputBox.cpp">
+      <Filter>Objects\GUI\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="cpu.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>Objects\Collisions\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Dozer.cpp">
+      <Filter>Objects\Enemies\Source\Dozer</Filter>
     </ClCompile>
     <ClCompile Include="DozerMoveLeft.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Objects\Enemies\Source\Dozer\States</Filter>
     </ClCompile>
     <ClCompile Include="DozerMoveRight.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="StateCores.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Objects\Enemies\Source\Dozer\States</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -284,9 +335,6 @@
     <ClInclude Include="MapTile.h">
       <Filter>Objects\Map\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="levelstrings.h">
-      <Filter>Objects\Map</Filter>
-    </ClInclude>
     <ClInclude Include="2dcamera.h">
       <Filter>Objects\Camera</Filter>
     </ClInclude>
@@ -311,14 +359,53 @@
     <ClInclude Include="GuiCheckBox.h">
       <Filter>Objects\GUI\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Dozer.h">
+    <ClInclude Include="GuiSlider.h">
+      <Filter>Objects\GUI\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FileStructs.h">
+      <Filter>Objects\Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileHandler.h">
+      <Filter>Objects\Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiDisplayPanel.h">
+      <Filter>Objects\GUI\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelHandler.h">
+      <Filter>Objects\Map\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiInput.h">
+      <Filter>Objects\GUI\State Machine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiInputBox.h">
+      <Filter>Objects\GUI\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="WayPoints.h">
+      <Filter>Objects\Map\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="levelstrings.h">
+      <Filter>Objects\Map\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FindFiles.h">
+      <Filter>Objects\Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cpu.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Objects\Collisions\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="CollidableObject.h">
+      <Filter>Objects\Collisions\Headers</Filter>
     </ClInclude>
     <ClInclude Include="DozerMoveLeft.h">
-      <Filter>Header Files</Filter>
+      <Filter>Objects\Enemies\Headers\Dozer\States</Filter>
     </ClInclude>
     <ClInclude Include="DozerMoveRight.h">
-      <Filter>Header Files</Filter>
+      <Filter>Objects\Enemies\Headers\Dozer\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Dozer.h">
+      <Filter>Objects\Enemies\Headers\Dozer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

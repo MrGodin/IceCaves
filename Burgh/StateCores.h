@@ -1,9 +1,9 @@
+
 #pragma once
 
 #include "Utils.h"
-
+#include "FileStructs.h"
 static const float gravity = 4.01f;
-class ObjectState;
 
 class PlayerCore 
 {
@@ -28,22 +28,23 @@ public:
 	float hit_points;
 	float power;
 	float mass;
-	ObjectState* state = NULL;
-
+	int way_point;
+	class ObjectState* state = NULL;
+	relicData relics;
 };
 
 class EnemyCore
 {
 public:
-	EnemyCore();
-	EnemyCore(EnemyCore &&ec);
-	EnemyCore &operator=(EnemyCore&& ec);
-
+	EnemyCore(){}
+	//BiDirection dir;
 	Vec2F pos;
 	Vec2F vel;
+	Vec2F size;
 	Vec2F accel;
 	Vec2F maxSpeed;
-	float mass, decayX;
+	TDirection dir;
+	float mass;
 	float thrust;
 	float traction;
 	float bounce_absorb;
@@ -51,7 +52,6 @@ public:
 	float shield_strength;
 	float hit_points;
 	float power;
-	ObjectState* state;
-	TDirection dir;
-	int width, height;
+	class ObjectState* state = NULL;
+
 };

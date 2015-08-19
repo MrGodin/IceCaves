@@ -4,6 +4,11 @@
 
 #include <string>
 #include "windows.h"
+#include <algorithm> 
+#include <functional> 
+#include <cctype>
+#include <locale>
+
 using namespace std;
 static WCHAR strBuffer[512] = { '\0' };
 
@@ -48,6 +53,25 @@ private:
 	WCHAR strBuffer[512];
 	char cBuffer[512];
 	int textSize = 8;
+
+	__inline std::string &ltrim(std::string &s)
+	{
+		s.erase(s.begin(), std::find_if(s.begin(), s.end(), std::not1(std::ptr_fun<int, int>(std::isspace))));
+		return s;
+	}
+
+	// trim from end
+	__inline std::string &rtrim(std::string &s)
+	{
+		s.erase(std::find_if(s.rbegin(), s.rend(), std::not1(std::ptr_fun<int, int>(std::isspace))).base(), s.end());
+		return s;
+	}
+
+	// trim from both ends
+	__inline std::string &trim(std::string &s)
+	{
+		return ltrim(rtrim(s));
+	}
 
 public:
 	TString(const WCHAR* string)
@@ -107,6 +131,7 @@ public:
 
 	};
 	~TString(){};
+	
 	TString(string str)
 	{
 		*this = str;
@@ -222,6 +247,36 @@ public:
 		return false;
 	}
 
+	// trim leading and trailng spaces
+	void Trim()
+	{
+		
+		string d = trim(string(c_str()));
+		WCHAR buffer[512];
+		size_t convertedChars = 0;
+		size_t newsize = strlen(d.c_str()) + 1;
+		mbstowcs_s(&convertedChars, buffer, newsize, d.c_str(), _TRUNCATE);
+		wsprintf(wcString, L"%s", buffer);
+		
+	}
+	void TrimLeft()
+	{
+		string d = ltrim(string(c_str()));
+		WCHAR buffer[512];
+		size_t convertedChars = 0;
+		size_t newsize = strlen(d.c_str()) + 1;
+		mbstowcs_s(&convertedChars, buffer, newsize, d.c_str(), _TRUNCATE);
+		wsprintf(wcString, L"%s", buffer);
+	}
+	void TrimRight()
+	{
+		string d = rtrim(string(c_str()));
+		WCHAR buffer[512];
+		size_t convertedChars = 0;
+		size_t newsize = strlen(d.c_str()) + 1;
+		mbstowcs_s(&convertedChars, buffer, newsize, d.c_str(), _TRUNCATE);
+		wsprintf(wcString, L"%s", buffer);
+	}
 };
 
 

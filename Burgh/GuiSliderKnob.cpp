@@ -1,12 +1,14 @@
 
 #include "GuiSliderKnob.h"
+#include "GuiListBox.h"
 
 bool GuiSliderKnob::OnMouseMove(GuiEvent& Event)
 {
 	if (mouse_captured )
 	{
+		static float Y = (float)Event.Mouse.y;
 		GuiFrame* obj = (GuiFrame*)_parent;
-		float resultY = clickPos.y - Event.Mouse.y;
+		float resultY = Y - Event.Mouse.y;
 		
 		MoveFrame(0.0f,
 			-resultY,
@@ -14,9 +16,14 @@ bool GuiSliderKnob::OnMouseMove(GuiEvent& Event)
 			frameDesc.originX,
 			(obj->OriginY() + obj->Height()) - frameDesc.height,
 			obj->OriginY());
-
-		float len = obj->OriginY() - frameDesc.originY;
-		int   index = len / moveDistToIndex;
+		
+		UINT index = (float)(frameDesc.originY - obj->OriginY()) / moveDistToIndex;
+		GuiListBox* lb = (GuiListBox*)obj->Owner();
+		if (lb)
+		{
+			 lb->UpdateStrings(index);
+		}
+		Y = (float)Event.Mouse.y;
 		return true;
 		
 	}
@@ -36,5 +43,6 @@ bool GuiSliderKnob::OnMouseClick(GuiEvent& Event)
 }
 HRESULT GuiSliderKnob::Rasterize()
 {
+	DrawFrame();
 	return S_OK;
 };

@@ -25,6 +25,15 @@ public:
 	// Framework methods.  Derived client class overrides these methods to 
 	// implement specific application requirements.
 	virtual void SetVSync(bool val){}
+	virtual void ResumeGame() = 0;
+	virtual void LoadGame(TString name) = 0;
+	virtual void LoadPlayerListBox(class GuiListBox* lb) = 0;
+	virtual void LoadPlayer(TString ID) = 0;
+	virtual void FillPlayerListBoxDisplayPanel(TString ID,class GuiDisplayPanel* dPanel) = 0;
+	virtual void CreateNewPlayer(TString name) = 0;
+	virtual void SetOptions(bool vs, bool fs) = 0;
+	virtual void GetOptions(bool& vs, bool& fs) = 0;
+	
 	virtual bool checkDeviceCaps()     { return true; }
 	virtual void onLostDevice()        {}
 	virtual void onResetDevice()       {}

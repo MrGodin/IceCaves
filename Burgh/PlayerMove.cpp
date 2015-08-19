@@ -31,16 +31,22 @@ void PlayerMove::OnUnsupported()
 {
 	Transition(new PlayerJump(pCore, false, false));
 }
-void PlayerMove::OnCollision(const RectF &rect, const RectF &FRect)
+void PlayerMove::OnCollision(const RectF rect, const RectF FRect)
 {
 	if (pCore->Vel.x > 0.0f)
 	{
+		
+
 		pCore->Pos.x -= FRect.right - rect.left;
 		pCore->Vel.x = -(pCore->Vel.x * pCore->decayX / 2);
 	}
 	else
-	{		
+	{
+		
 		pCore->Pos.x += rect.right - FRect.left;
 		pCore->Vel.x = -(pCore->Vel.x * pCore->decayX / 2);
+
+
+
 	}
 }

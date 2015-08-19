@@ -1,5 +1,8 @@
 
 #include "IceCaves.h"
+#include "GuiExitMenu.h"
+#include "GuiDisplayPanel.h"
+#include "LevelHandler.h"
 
 IceCaves::IceCaves(HINSTANCE hInstance, WCHAR* winCaption, D3DDEVTYPE devType, DWORD requestedVP, KBControl* kb)
 	: TGame(hInstance, winCaption, devType, requestedVP, kb),
@@ -13,6 +16,11 @@ IceCaves::IceCaves(HINSTANCE hInstance, WCHAR* winCaption, D3DDEVTYPE devType, D
 		PostQuitMessage(0);
 	}
 	
+	if (!fileHandler.LoadGameFile(gameDataFileName))
+	{
+		
+		
+	}
 	if (gd3dDevice)
 	{
 		CreateSprites();
@@ -25,15 +33,15 @@ IceCaves::IceCaves(HINSTANCE hInstance, WCHAR* winCaption, D3DDEVTYPE devType, D
 	GuiState::SetArrayFonts(pFont[0]);
 	GuiFrame::SetDrawTools(TGame::gd3dDevice, pGuiSprite);
 	GameState.pWindow = new GuiStartMenu(&GameState);
+	GameState.game_state = gsPaused;
 
 	pCurrMap = new TTileMap(TString("media\\levelsprite2.png"), pLevel2String, iLevel2Width, iLevel2Height, 64, 64);
 	pCurrMap->Create(pLevel2String,0,0);
 	cam.SetBindingBox(pCurrMap->GetBoundary());
-	// 100 300
 	player = new Player(&cam,32, 32, { 100.0f, 300.0f });
 	player->SetImages(pCurrMap->SpriteSheet());
-	player->SetImageindex(23);	
-	
+	player->SetImageindex(23);
+
 	pDozer = new Dozer*[8];
 	for (int i = 0; i < 8; ++i)
 	{
@@ -50,27 +58,37 @@ IceCaves::IceCaves(HINSTANCE hInstance, WCHAR* winCaption, D3DDEVTYPE devType, D
 	pDozer[5]->SetPosition(Vec2F(21.0f, 32.0f));
 	pDozer[6]->SetPosition(Vec2F(90.0f, 34.0f));
 	pDozer[7]->SetPosition(Vec2F(100.0f, 34.0f));
-	
+
 	TPort.SetDevice(gd3dDevice);
 	TPort.ResetCenter(GameState.backBufferWidth, GameState.backBufferHeight, 1024, 600);
+	Cpu.Initialize();
 	buildBackGround();
 	buildStatDisplay();
 	onResetDevice();
-	//enableFullScreenMode(true);
+	if (fileHandler.GameData()->vsync)
+		SetVSync(true);
+	else
+		SetVSync(false);
+
+	if (fileHandler.GameData()->fullscreen)
+	    enableFullScreenMode(true);
 }
 
 IceCaves::~IceCaves()
 {
-	
+	Cpu.Shutdown();
+	if (player)
+		SaveCurrentPlayerFile();
+
 	SAFE_DELETE(GameState.pWindow);
 	SAFE_DELETE(pCurrMap);
 	SAFE_DELETE(player);
 	SAFE_DELETE(bkGround);
 	SAFE_DELETE(statDisplay);
+	fileHandler.WriteGameFile(gameDataFileName);
 
 	///DestroyAllVertexDeclarations();
 }
-
 LRESULT IceCaves::msgProc(UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	// Is the application in a minimized or maximized state?
@@ -185,8 +203,14 @@ LRESULT IceCaves::msgProc(UINT msg, WPARAM wParam, LPARAM lParam)
 		// WM_CLOSE is sent when the user presses the 'X' button in the
 		// caption bar menu.
 	case WM_CLOSE:
-		DestroyWindow(mhMainWnd);
+	{
+		SAFE_DELETE(GameState.pWindow);
+		GameState.game_state = gsPaused;
+		GameState.pWindow = new GuiExitMenu(&GameState);
 		return 0;
+	}
+		//DestroyWindow(mhMainWnd);
+
 
 		// WM_DESTROY is sent when the window is being destroyed.
 	case WM_DESTROY:
@@ -199,50 +223,7 @@ LRESULT IceCaves::msgProc(UINT msg, WPARAM wParam, LPARAM lParam)
 	break;
 	case WM_LBUTTONDOWN:
 	{
-		/*
-		POINT mouse;
-		GuiControl::GuiEvent E;
-		E.Msg = WM_LBUTTONDOWN;
-		GetCursorPos(&mouse);
-		ScreenToClient(getMainWnd(), &mouse);
-		E.Mouse.x = mouse.x;
-		E.Mouse.y = mouse.y;
-		if (pWindow1->OnMouseClick(E))
-		{
-			if (E.Event == GuiEvent_Capture)
-			{
-				switch (E.Action)
-				{
-				case LOAD_GAME:
-				{
-					GuiButton* Btn = (GuiButton*)E.Sender;
-					Btn->SetEnabled(false);
-				}
-				break;
-				case LOAD_WINDOW_OPTIONS:
-				{
-					int x = 0;
-				}
-				break;
-				case RESUME_GAME:
-				{
-					int x = 0;
-				}
-				break;
-				case LOAD_WINDOW_HELP:
-				{
-					int x = 0;
-				}
-				break;
-				case LOAD_WINDOW_EXIT:
-				{
-					int x = 0;
-				}
-				break;
-				}
-			}
-		};
-		*/
+		
 	}
 		break;
 		
@@ -250,15 +231,22 @@ LRESULT IceCaves::msgProc(UINT msg, WPARAM wParam, LPARAM lParam)
 		GuiControl::SetMouseCapture(false);
 		break;
 	case WM_KEYDOWN:
-		if (wParam == VK_ESCAPE)
-			enableFullScreenMode(false);
+		if (wParam == VK_ESCAPE)// escape key
+		{
+			
+			if (!GameState.pWindow)
+			{
+				GameState.pWindow = new GuiStartMenu(&GameState);
+
+			}
+			GameState.game_state = gsPaused;
+		}
 		else if (wParam == 'F')
 			enableFullScreenMode(true);
 		return 0;
 	}
 	return DefWindowProc(mhMainWnd, msg, wParam, lParam);
 }
-
 HRESULT IceCaves::CreateFonts(UINT index, INT height, UINT style, WCHAR* name )
 {
 	return D3DXCreateFont(TGame::gd3dDevice, height, 0, style, 1, FALSE, DEFAULT_CHARSET,
@@ -266,7 +254,6 @@ HRESULT IceCaves::CreateFonts(UINT index, INT height, UINT style, WCHAR* name )
 		name, &pFont[index]);
 	
 };
-
 HRESULT IceCaves::CreateSprites()
 {
 	
@@ -347,35 +334,43 @@ void IceCaves::onResetDevice()
 
 void IceCaves::updateScene(float dt)
 {
-#ifdef _DEBUG
+#ifdef M_DEBUG
 	dt = 1.0f / 60.0f;
 #endif
-
-	mTime += dt;
-	playerControl->Poll(player);
-	if (GameState.pWindow)
-	   GameState.pWindow->Update();
-	player->Update(dt);
-
-	for (int i = 0; i < 8; ++i)
+	Cpu.Frame();
+	
+	switch (GameState.game_state)
 	{
-		pDozer[i]->Update(dt);
-	}
+		case gsRunning:
+		{
+			mTime += dt;
+			playerControl->Poll(player);
+			player->Update(dt);
+			cam.SetPosition(player->GetPos().x, player->GetPos().y);
+			pCurrMap->Update(cam, dt, TPort.GetX(), TPort.GetY());
+			pCurrMap->DoCollision(player);
+			pCurrMap->DoSupport(player);
+			for (int i = 0; i < 8; ++i)
+			{
+				pDozer[i]->Update(dt);
+				pCurrMap->DoCollision(pDozer[i]);
+				pCurrMap->DoSupport(pDozer[i]);
+			}
+			bkGround->Update(dt);
+			statDisplay->Update(Frames.Update(dt),(float)Cpu.GetCpuPercentage(), player->GetPos(),mTime);
+		}
+		case gsPaused:
+		{
+			if (GameState.pWindow)
+			{
+				GameState.pWindow->Update();
+						
+			}
+		}
 
-	cam.SetPosition(player->GetPos().x , player->GetPos().y );
-	pCurrMap->Update(cam, dt,TPort.GetX(),TPort.GetY());
-
-	pCurrMap->DoCollision(player);
-	
-	for (int i = 0; i < 8; ++i)
-	{
-		pCurrMap->DoCollision(pDozer[i]);
+	default:
+		break;
 	}
-	
-	pCurrMap->DoSupport(player);
-	bkGround->Update(dt);
-	
-	statDisplay->Update(player->GetCore()->thrust, player->GetPos());
 }
 
 void IceCaves::drawScene()
@@ -390,29 +385,32 @@ void IceCaves::drawScene()
 	HR(gd3dDevice->SetRenderState(D3DRS_ALPHAREF, 150));
 	HR(gd3dDevice->SetRenderState(D3DRS_ALPHATESTENABLE, false));
 	
-	
-	if (pGuiSprite && GameState.game_state != gsRunning)
-	{		
+	if (pGuiSprite && GameState.game_state == gsPaused)
+	{
+		
 		pGuiSprite->Begin(D3DXSPRITE_ALPHABLEND);
 		bkGround->Rasterize();
-		//if (GameState.pWindow)
-		  //GameState.pWindow->Rasterize();
-		
+		if (GameState.pWindow)
+			  GameState.pWindow->Rasterize();
+			
 		pGuiSprite->End();
-		
+	}
+	else if (GameState.game_state == gsRunning)
+	{
+		pGuiSprite->Begin(D3DXSPRITE_ALPHABLEND);
+		  bkGround->Rasterize();
+		pGuiSprite->End();
+
 		pMapSprite->Begin(D3DXSPRITE_ALPHABLEND);
 		pCurrMap->Draw();
 		player->Rasterize();
-
 		for (int i = 0; i < 8; ++i)
 		{
 			pDozer[i]->Rasterize();
 		}
-		
 		pMapSprite->End();
-		
 		pGuiSprite->Begin(D3DXSPRITE_ALPHABLEND);
-		  statDisplay->Rasterize();
+		statDisplay->Rasterize();
 		pGuiSprite->End();
 	}
 
@@ -436,7 +434,6 @@ void IceCaves::HandleGameState()
 		break;
 	}
 }
-
 void IceCaves::buildFX()
 {
 	// Create the generic Light & Tex FX from a .fx file.
@@ -481,7 +478,6 @@ void IceCaves::buildFX()
 	HR(mGrassFX->SetTexture(mhGrassTex, mGrassTex));
 	*/
 }
-
 void IceCaves::buildBackGround()
 {
 	GuiFrame::GuiFrameDesc desc;
@@ -491,7 +487,6 @@ void IceCaves::buildBackGround()
 
 
 };
-
 void IceCaves::buildStatDisplay()
 {
 	GuiFrame::GuiFrameDesc desc;
@@ -502,12 +497,16 @@ void IceCaves::buildStatDisplay()
 	desc.baseColor = QVCBlackTrans1;
 	desc.innerBorderColor = desc.outerBorderColor = QVCBlue;
 	statDisplay = new StatDisplay(desc);
-	statDisplay->SetFont(pFont[0]);
+	statDisplay->SetFont(pFont[3]);
 	statDisplay->Create();
-
 }
 
 //===========================================
+void IceCaves::SaveCurrentPlayerFile()
+{
+	playerFileData data = player->GetFileData();
+	fileHandler.WritePlayerFile(data.filename, data);
+}
 void IceCaves::SetVSync(bool val)
 {
 	
@@ -521,4 +520,104 @@ void IceCaves::SetVSync(bool val)
 	gd3dDevice->Reset(&md3dPP);
 	onResetDevice();
 	
+}
+void IceCaves::ResumeGame()
+{
+	SAFE_DELETE(GameState.pWindow);
+	GameState.game_state = gsRunning;
+}
+void IceCaves::LoadGame(TString name)
+{
+	SAFE_DELETE(GameState.pWindow);
+	GameState.game_state = gsRunning;
+}
+
+void IceCaves::LoadPlayerListBox(GuiListBox* lb)
+{
+	for (int c = 0; c < maxPlayersInFile; c++)
+	{
+		TString str = fileHandler.GameData()->games[c];
+		if (str == TString("\0"))
+			continue;
+
+		lb->AddString(str);
+		
+	}
+	lb->UpdateStrings(0);// set to top-most ie: index 0
+}
+void IceCaves::LoadPlayer(TString ID)
+{
+	TString filename = playerPath; filename += ID; filename += fileExt;
+	playerFileData playerData;
+	if (fileHandler.LoadPlayerFile(filename, playerData))
+	{
+		player->SetFileData(playerData);
+		GameState.gameLoaded = true;
+		ResumeGame();
+	}
+}
+void IceCaves::FillPlayerListBoxDisplayPanel(TString ID, GuiDisplayPanel* dPanel)
+{
+	TString filename = playerPath; filename += ID; filename += fileExt;
+	playerFileData playerData;
+
+	if (fileHandler.LoadPlayerFile(filename, playerData))
+	{
+
+		TString str = "Level : "; str += TString(playerData.level);
+		dPanel->SetDisplayText(str, 0, 0);
+		str = "Tokens : "; str += TString(playerData.tokens);
+		dPanel->SetDisplayText(str, 1, 0);
+		str = "Shields : "; str += TString((float)playerData.shieldstrength);
+		dPanel->SetDisplayText(str, 2, 0);
+		str = "Traction : "; str += TString(playerData.traction);
+		dPanel->SetDisplayText(str, 3, 0);
+		str = "Thrust : "; str += TString(playerData.thrust);
+		dPanel->SetDisplayText(str, 4, 0);
+		str = "Speed : "; str += TString(playerData.speed);
+		dPanel->SetDisplayText(str, 0, 1);
+	}
+}
+void IceCaves::CreateNewPlayer(TString name)
+{
+	playerFileData playerdata;
+	playerdata.shieldstrength = 100;
+	playerdata.thrust = 0.0f;
+	playerdata.tokens = 0;
+	playerdata.traction = 0.989f;
+	playerdata.accX = 2.0f;
+	playerdata.accY = 2.0f;
+	playerdata.speed = 4.0f;
+	playerdata.posX = 100.0f;
+	playerdata.posY = 300.0f;
+	name.Trim();
+	TString filename = playerPath; filename += name; filename += fileExt;
+	sprintf_s(playerdata.filename, "%s", filename.c_str());
+
+	LevelHandler lh;
+	lh.GetLevel(1, playerdata.Level);
+
+	fileHandler.WritePlayerFile(filename, playerdata);
+	for (int c = 0; c < maxPlayersInFile; c++)
+	{
+		if (TString(fileHandler.GameData()->games[c]) == TString("\0"))
+		{
+			sprintf_s(fileHandler.GameData()->games[c], "%s", name.c_str());
+			break;
+		}
+	}
+	player->SetFileData(playerdata);
+	fileHandler.WriteGameFile(gameDataFileName);
+	SAFE_DELETE(GameState.pWindow);
+	GameState.pWindow = new GuiLoadGame(&GameState);
+}
+void IceCaves::SetOptions(bool vs, bool fs)
+{
+	fileHandler.GameData()->fullscreen = fs;
+	fileHandler.GameData()->vsync = vs;
+}
+void IceCaves::GetOptions(bool& vs, bool& fs)
+{
+	vs = fileHandler.GameData()->vsync;
+	fs = fileHandler.GameData()->fullscreen;
 }

@@ -27,7 +27,7 @@ void DozerMoveRight::OnCtrlDirChange(TDirection d)
 	Transition(new DozerMoveLeft(pCore));
 }
 
-void DozerMoveRight::OnCollision(const RectF &rect, const RectF &FRect)
+void DozerMoveRight::OnCollision(const RectF rect, const RectF FRect)
 {
 	Vec2F lr(FRect.right - rect.left, FRect.bottom - rect.top);
 
@@ -54,3 +54,4 @@ void DozerMoveRight::OnCollision(const RectF &rect, const RectF &FRect)
 DozerMoveRight::~DozerMoveRight()
 {
 }
+

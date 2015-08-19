@@ -2,7 +2,8 @@
 #pragma once
 
 #include "GuiState.h"
-
+#include "FileHandler.h"
+#include "GuiDisplayPanel.h"
 class GuiLoadGame : public GuiState
 {
 protected:
@@ -26,7 +27,11 @@ public:
 		//SAFE_DELETE(pText);
 		//SAFE_DELETE(pText2);
 	}
-	virtual void Update()override{};
+	GuiDisplayPanel* GetDisplayPanel(){
+		return (GuiDisplayPanel*)pWindow1->GetChildType(GUIOBJECT_DISPLAYPANEL);
+	};
+	virtual GuiListItem* GetSelectedItem(UINT object_type, TString object_name)override;
+	virtual void Update()override;
 	virtual void    ReDraw()override;
 	virtual LRESULT OnCritialError()override;
 	virtual HRESULT Rasterize()override;

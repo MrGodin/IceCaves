@@ -21,9 +21,8 @@ Dozer::Dozer(Camera &cam, int Width, int Height, Vec2F &Position)
 	core.thrust = 12.0f;
 	core.anti_gravity = 0.0f;
 	core.mass = 2.0f;
-	core.decayX = 0.989f;
-	core.width = Width;
-	core.height = Height;
+	core.size.x = Width;
+	core.size.y = Height;
 	core.state = new DozerMoveRight(&core);
 }
 
@@ -88,24 +87,11 @@ void Dozer::Update(float dt)
 
 RectF Dozer::GetCRect()
 {
-	int halfWidth = core.width / 2;
-	int halfHeight = core.height / 2;
-	RectF bb;
-	bb.left = -halfWidth;
-	bb.right = halfWidth;
-	bb.top = -halfHeight;
-	bb.bottom = halfHeight;
-	/*bb.top = -(halfHeight + 24);
-	bb.bottom = (-halfHeight) + 24;*/
-
+	Vec2F halfSize(core.size / 2.0f);
+	RectF bb(-halfSize, halfSize);
 	bb.Translate(core.pos.x, core.pos.y);
 
 	return bb;
-}
-
-UINT Dozer::Type()
-{ 
-	return type; 
 }
 
 ObjectState* Dozer::GetState()
@@ -113,14 +99,14 @@ ObjectState* Dozer::GetState()
 	return core.state;
 }
 
-Vec2F Dozer::GetVel()
-{
-	return core.vel;
-}
-
 Vec2F Dozer::GetPos()
 {
-	return core.pos;
+	return GetPosition();
+}
+
+Vec2F Dozer::GetVel()
+{
+	return GetVelocity();
 }
 
 void Dozer::SetImageindex(UINT index)
@@ -142,4 +128,42 @@ void Dozer::SetPosition(const Vec2F &Pos)
 Dozer::~Dozer()
 {
 	SAFE_DELETE(core.state);
+}
+
+
+
+// Inhertied from CollidableObject
+RectF Dozer::GetAABB()
+{
+	return GetCRect();
+}
+
+Vec2F Dozer::GetVelocity()
+{
+	return core.vel;
+}
+
+Vec2F Dozer::GetPosition()
+{
+	return core.pos;
+}
+
+void   Dozer::SetVelocity(Vec2F vel)
+{
+	core.vel = vel;
+}
+
+float  Dozer::GetRadius()
+{
+	return core.size.Len();
+}
+
+Vec2F  Dozer::GetCenter()
+{
+	return GetPosition();
+}
+
+void   Dozer::Rebound(Vec2F normal)
+{
+
 }

@@ -75,8 +75,8 @@ public:
 	
 	virtual void SetEnabled(bool v)
 	{
-		Enabled(v);
-		if (Enabled())
+		_enabled = v;
+		if (_enabled)
 			SetToMainColor();
 		else
 			SetToDisableColor();
@@ -96,7 +96,7 @@ public:
 		if (frameDesc.originY > maxY)
 			frameDesc.originY = maxY;
 		
-		for (int c = 0; c < 4; c++)
+		/*for (int c = 0; c < 4; c++)
 		{
 			frame[c].x += (float)incX;
 			frame[c].y += (float)incY;
@@ -110,8 +110,8 @@ public:
 				frame[c].y = (float)maxY;
 			if (frame[c].x > (float)maxX)
 				frame[c].x = (float)maxX;
-		}
-
+		}*/
+		Init();
 		
 	}
 	__inline void SetToMainColor()

@@ -2,7 +2,7 @@
 #pragma once
 
 #include "windows.h"
-
+#include "Vec2.h"
 template <class T>
 class _Rect
 {
@@ -33,7 +33,13 @@ public:
 		right(r.right),
 		bottom(r.bottom)
 	{}
-	
+	_Rect(_Vec2<T> &topLeft, _Vec2<T> &bottomRight)
+		:
+		left(topLeft.x),
+		top(topLeft.y),
+		right(bottomRight.x),
+		bottom(bottomRight.y)
+	{}
 	void SetRectR(RECT r)
 	{
 
@@ -79,6 +85,15 @@ public:
 		top = __max(top, rect.top);
 		right = __min(right, rect.right);
 		bottom = __min(bottom, rect.bottom);
+	}
+	inline bool OverLaps(_Rect& rect)
+	{
+		return top < rect.bottom && bottom > rect.top && left < rect.right && right > rect.left;
+	}
+
+	inline bool Conatins(_Vec2<T>& pt)
+	{
+		return pt.x >= left && pt.x <= right && pt.y >= top && pt.y <= bottom;
 	}
 	template <class T2>
 	operator _Rect< T2 >() const

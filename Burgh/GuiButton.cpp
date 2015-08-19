@@ -17,7 +17,7 @@ bool GuiButton::OnMouseMove(GuiEvent& Event)
 	if (!Visible() || !Enabled())
 		return false;
 
-	if (Enabled())
+	if (_enabled)
 	{
 		if (PointInFrame({ Event.Mouse.x, Event.Mouse.y }))
 		{

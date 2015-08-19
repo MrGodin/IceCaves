@@ -2,6 +2,8 @@
 #include "GuiWindow.h"
 #include "GuiListBox.h"
 #include "GuiCheckBox.h"
+#include "GuiDisplayPanel.h"
+#include "GuiInputBox.h"
 #include "Engine.h"
 
 
@@ -33,17 +35,38 @@ bool GuiWindow::OnMouseMove(GuiEvent& Event)
 			try	{ btn = (GuiButton*)obj; }
 			catch (...)	{ btn = NULL; }
 			if (btn)
-			  btn->OnMouseMove(Event);
-				
+			{
+				if (btn->OnMouseMove(Event))
+				{
+					Event.Sender = btn;
+					return true;
+				};
+			}
 			
 		}
 		break;
+		case GUIOBJECT_LISTBOX:
+		{
+			GuiListBox* LB = (GuiListBox*)obj;
+			if (LB)
+				LB->OnMouseMove(Event);
+
+		}
 		case GUIOBJECT_BTNCONTAINER:
 		{
 			GuiButtonContainer* BtnC = (GuiButtonContainer*)obj;
 			if (BtnC)
-			    BtnC->OnMouseMove(Event);
+			   if(BtnC->OnMouseMove(Event))
+				   return true;
 		
+		}
+		break;
+		case GUIOBJECT_DISPLAYPANEL:
+		{
+			GuiDisplayPanel* panel = (GuiDisplayPanel*)obj;
+			if (panel)
+				panel->OnMouseMove(Event);
+
 		}
 		break;
 		}
@@ -116,4 +139,22 @@ bool GuiWindow::OnMouseClick(GuiEvent& Event)
 	}
 	
 	return false;
+}
+bool GuiWindow::OnKeyPress(GuiEvent& Event)
+{
+	for (UINT i = 0; i < children.size(); i++)
+	{
+		GuiObject* obj = GetChild(i);
+		switch (obj->Type())
+		{
+			case GUIOBJECT_INPUT:
+			{
+				GuiInputBox* box = (GuiInputBox*)obj;
+				return box->OnKeyPress(Event);
+			}
+			break;
+			default:
+				break;
+		}
+	}
 }

@@ -8,7 +8,7 @@ void GuiStartMenu::CreateGuiWindow()
 {
 	wndDesc.baseColor = QVCWhite;
 	wndDesc.height =  256;
-	wndDesc.width =  1024 / 3;
+	wndDesc.width =  1024 / 2.5L;
 	wndDesc.hoverColor = QVCWhite;
 	wndDesc.innerBorderColor = wndDesc.outerBorderColor = QVCFrameGrey;
 	wndDesc.originX =  (core->backBufferWidth / 2) - (wndDesc.width / 2);
@@ -64,30 +64,59 @@ void GuiStartMenu::CreateGuiWindow()
 
 	BtnDesc.Action = LOAD_GAME;
 	BtnDesc.Text = L"Play";
+	BtnDesc.Index = 0;
 	BtnCont->Add(BtnDesc);
-	GuiButton* btn = (GuiButton*)BtnCont->GetLastChild();
+	
 	
 	
 
 	BtnDesc.Text = L"Options";
 	BtnDesc.Action = LOAD_WINDOW_OPTIONS;
+	BtnDesc.Index = 1;
 	BtnCont->Add(BtnDesc);
 
 
 	BtnDesc.Action = RESUME_GAME;
 	BtnDesc.Text = L"Resume";
+	BtnDesc.Index = 2;
 	BtnCont->Add(BtnDesc);
+	if (!core->gameLoaded)
+	{
+		GuiButton* btn = (GuiButton*)BtnCont->GetLastChild();
+		btn->SetEnabled(false);
+	}
 
 
 	BtnDesc.Action = LOAD_WINDOW_HELP;
 	BtnDesc.Text = L"Help";
+	BtnDesc.Index = 3;
 	BtnCont->Add(BtnDesc);
 
 
 	BtnDesc.Action =  LOAD_WINDOW_EXIT;
 	BtnDesc.Text = L"Quit";
+	BtnDesc.Index = 4;
 	BtnCont->Add(BtnDesc);
 	pWindow1->AddChild(BtnCont);
+
+	GuiFrame::GuiFrameDesc txtDesc;
+	txtDesc.height = 16;
+	txtDesc.width =  100;
+	txtDesc.originX = conDesc.frameDesc.originX + BtnDesc.frameDesc.width + 24;
+	txtDesc.originY = conDesc.frameDesc.originY + 8;
+	txtDesc.baseColor = txtDesc.innerBorderColor = txtDesc.outerBorderColor = QVCTransparent;
+	txtDesc.type = GUIOBJECT_UNDEFINED;
+
+	pT = new GuiText(txtDesc, TString("Welcome To Burgh"), TEXTALIGN_LEFT);
+	pT->SetFont(pFonts);
+	pT->SetText(L"Welcome");
+	pWindow1->AddChild(pT);
+	txtDesc.originX = pWindow1->OriginX() + 16;
+	txtDesc.originY = pWindow1->OriginY() + 16;
+	GuiText*t = new GuiText(txtDesc, L"", TEXTALIGN_LEFT);
+	t->SetFont(pFonts);
+	t->SetText(L"Caves Of Burgh Main Menu");
+	pWindow1->  AddChild(t);
 }
 void GuiStartMenu::ReDraw()
 {
@@ -148,11 +177,13 @@ UINT GuiStartMenu::msgProcState(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 			case LOAD_GAME:
 			{
 				Transition(new GuiLoadGame(core));
+				return 0;
 			}
 				break;
 			case RESUME_GAME:
 			{
-				
+				TGame::gd3dApp->ResumeGame();
+				return 0;
 			}
 				break;
 			case LOAD_WINDOW_EXIT:
@@ -175,7 +206,25 @@ UINT GuiStartMenu::msgProcState(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 		ScreenToClient(hWnd, &mouse);
 		E.Mouse.x = mouse.x;
 		E.Mouse.y = mouse.y;
-		pWindow1->OnMouseMove(E);
+		if (pWindow1->OnMouseMove(E))
+		{
+			switch (E.Sender->Type())
+			{
+			
+			case GUIOBJECT_BUTTON:
+			{
+				GuiButton* btn = (GuiButton*)E.Sender;
+				TString str = strMessages[btn->GetGroupIndex()];
+				pT->SetText(str.w_char());
+			}
+			default:
+				break;
+			};
+		}
+		else
+		{
+			pT->SetText(L"");
+		};
 	}
 		break;
 	case WM_LBUTTONUP:

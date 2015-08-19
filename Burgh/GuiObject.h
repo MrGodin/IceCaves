@@ -56,6 +56,17 @@ public:
 		obj->SetOwner(this);
 		children.push_back(obj);
 	}
+	GuiObject* GetChildType(UINT type)
+	{
+		for (UINT c = 0; c < children.size(); c++)
+		{
+			if (children[c]->Type() == type)
+			{
+				return children[c];
+			}
+		}
+		return NULL;
+	}
 	GuiObject* GetChild(UINT index)
 	{ 
 		if (index < children.size())

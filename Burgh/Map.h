@@ -221,7 +221,7 @@ public:
 			}
 		}
 	}*/
-	bool GetCollisionRectSingle(RectF &cRect, RectF& rect, Vec2F& vel)
+	bool GetCollisionRectSingle(RectF cRect, RectF& rect, Vec2F& vel)
 	{
 
 		if (vel.x > 0.0f)
@@ -301,7 +301,7 @@ public:
 				{
 					for (int ix = TGameTile::GetIndexXBiasLeft(cRect.right), ixEnd = TGameTile::GetIndexXBiasRight(cRect.left);
 						ix >= ixEnd; ix--)
-					{						
+					{
 						TGameTile* t = GetTile(ix, iy);
 						if (t)
 						{
@@ -354,7 +354,9 @@ public:
 	bool  DoCollision(GameObject* sprite)
 	{
 		RectF rect;
-		RectF sprRect = sprite->GetCRect();		
+		RectF rf = sprite->GetCRect();
+
+		
 		Player* pl = NULL;
 		bool collided = false;
 		/*
@@ -397,36 +399,21 @@ public:
 			}
 		}*/
 		Vec2F vel = sprite->GetVel();
-
-		bool hasCollided = GetCollisionRectSingle(sprRect, rect, vel);
-
-		if (hasCollided)
+		while (GetCollisionRectSingle(sprite->GetCRect(), rect, vel))
 		{
+
+
 			if (sprite->GetState())
 			{
-				sprite->GetState()->OnCollision(rect, sprRect);
-				collided = true;
-			}
-		}
+				sprite->GetState()->OnCollision(rect, sprite->GetCRect());
 
-		//while (GetCollisionRectSingle(sprite->GetCRect(), rect, vel))
-		//{
-		//
-		//
-		//	if (sprite->GetState())
-		//	{
-		//		sprite->GetState()->OnCollision(rect, sprite->GetCRect());
-		//
-		//	}
-		//	
-		//	collided = true;
-		//
-		//	//float dex = TransformPlayerPositionX(sprite->GetCore()->Pos.x);
-		//	//sprite->GetCore()->sCRect.Translate(dex, sprite->GetCore()->Pos.y);
-		//}
-		//
-		//collided = true;
-		
+			}
+			
+			collided = true;
+
+			//float dex = TransformPlayerPositionX(sprite->GetCore()->Pos.x);
+			//sprite->GetCore()->sCRect.Translate(dex, sprite->GetCore()->Pos.y);
+		}
 		return collided;
 	}
 	HRESULT Create(char* mapStr,long dX,long dY)
@@ -456,7 +443,7 @@ public:
 			for (int x = 0; x < iCols; x++)
 			{
 				const int index = y * iCols + x;
-				
+
 				EnTileType tType = ttPassable;
 				int image_row = 8;
 				int index2 = -1;
@@ -473,19 +460,18 @@ public:
 				case '2':
 				case '3':
 				case '4':
-
+				case 'A':
+				{
+					pTiles[index]->AddType(ttPassable);
+					pTiles[index]->AddType(ttPrize);
+					pTiles[index]->ImageIndex(29);
+					break;
+				}
 				case 'X':
 				{
 					pTiles[index]->AddType(ttPassable);
 					pTiles[index]->AddType(ttPrize);
 					pTiles[index]->ImageIndex(19);
-
-
-
-					/* using memcpy to copy string: */
-
-
-					//sprintf_s(p ,"%s", "X");
 				}
 				break;
 				case '?':

@@ -3,6 +3,7 @@
 
 #include "GuiCore.h"
 #include "GuiWindow.h"
+#include "GuiListBox.h"
 
 class GuiState
 {
@@ -33,13 +34,11 @@ public:
 	UINT Poll(){ return action; }
 	void Transition(GuiState* state)
 	{
-		
 		core->pWindow = state;
-		
 		delete this;
 	}
 	
-	
+	virtual GuiListItem* GetSelectedItem(UINT object_type, TString object_name){ return NULL; }
 	virtual HRESULT Rasterize() = 0;
 	virtual void    ReDraw() = 0;
 	virtual void Update() = 0;

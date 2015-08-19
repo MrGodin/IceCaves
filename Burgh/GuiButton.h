@@ -36,7 +36,7 @@ public:
 		SAFE_DELETE(pCaptionText);
 	}
 	UINT GetAction(){ return Desc.Action; }
-	
+	UINT GetGroupIndex(){ return Desc.Index; }
 	virtual void SetFont(ID3DXFont* f)override
 	{
 		pFont = f;
@@ -48,14 +48,7 @@ public:
 	 void Enabled(bool v)override
 	{
 		_enabled = v;
-		if (!_enabled)
-		{
-			SetToDisableColor();
-		}
-		else
-		{
-			SetToMainColor();
-		}
+		
 	}
 	virtual HRESULT Rasterize()override;
 	virtual bool OnMouseMove(GuiEvent& Event)override;

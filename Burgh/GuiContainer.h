@@ -152,7 +152,12 @@ public:
 			{
 
 				if ((btn = (GuiButton*)GetChild(i)) != NULL)
-					btn->OnMouseMove(Event);
+					if (btn->OnMouseMove(Event))
+					{
+						Event.Sender = btn;
+						
+						return true;
+					};
 
 			}
 		}

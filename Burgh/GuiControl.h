@@ -10,13 +10,14 @@ public:
 	
 	struct GuiEvent
 	{
-		UINT Event;
-		UINT Action;
+		UINT Event = 0;
+		UINT Action = 0;
 		GuiControl* Sender = NULL;
 		UINT_PTR Key = 0x0;
-		UINT Msg;
+		UINT Msg = 0;
 		Vec2L Mouse;
-		WPARAM wParam;
+		bool Captured = false;
+		WPARAM wParam = 0;
 	};
 public:
 	GuiControl(GuiFrame::GuiFrameDesc desc)

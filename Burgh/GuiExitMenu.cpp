@@ -34,7 +34,7 @@ void GuiExitMenu::CreateChildren()
 	txtDesc.width = pWindow1->Width();
 	txtDesc.height = 16;
 	txtDesc.originX = pWindow1->OriginX();
-	txtDesc.originY = ((pWindow1->OriginY() + (pWindow1->Height() / 2) - 8)) - (pWindow1->Height() / 4);
+	txtDesc.originY = ((pWindow1->OriginY() + (pWindow1->Height() / 2) - 22));
 	txtDesc.baseColor = txtDesc.hoverColor = txtDesc.innerBorderColor = txtDesc.outerBorderColor = QVCTransparent;
 	txt = new GuiText(txtDesc, L"Exit to Windows ?", TEXTALIGN_CENTER);
 	txt->SetFont(pFonts);
@@ -45,7 +45,7 @@ void GuiExitMenu::CreateChildren()
 	BtnDesc.frameDesc.baseColor = QVCRed;
 	BtnDesc.frameDesc.hoverColor = QVCRedHover;
 	BtnDesc.frameDesc.width = 64;
-	BtnDesc.frameDesc.height = 16;
+	BtnDesc.frameDesc.height = 22;
 	BtnDesc.frameDesc.originX = pWindow1->OriginX() + 16;
 	BtnDesc.frameDesc.originY = pWindow1->OriginY() + (pWindow1->Height() - (22 +  16));
 

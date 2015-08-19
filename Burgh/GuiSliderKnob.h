@@ -33,21 +33,16 @@ public:
 	}
 	void Resize(UINT itemCount)
 	{
+		
+
 		GuiFrame* obj = (GuiFrame*)_parent;
 		float parentHeight = (float)obj->Height();
-		if (itemCount > Desc.itemDisplayCount)
-		{
-			float percent = (float)(Desc.itemDisplayCount / itemCount);
-			frameDesc.height = (long)(parentHeight * percent);
-			float move_space = (float)parentHeight - frameDesc.height;
-			int undisplayeditems = (int)(itemCount- Desc.itemDisplayCount);
-		    moveDistToIndex = move_space / undisplayeditems;
-			
-		}
-		else
-		{
-			frameDesc.height = obj->Height();
-		}
+
+		UINT itemsNotDisplayed = itemCount - Desc.itemDisplayCount;
+		float per = (float)Desc.itemDisplayCount / (float)itemCount;
+		frameDesc.height = (long)(parentHeight * per);
+		float distToMove = parentHeight - frameDesc.height;
+		moveDistToIndex = distToMove / itemsNotDisplayed;
 		Init();
 
 	}

@@ -15,7 +15,7 @@ protected:
 	TSpriteSheet* pTexture = NULL;
 	UINT imageIndex = 0;
 	Camera *cam = NULL;
-
+	playerFileData fileData;
 	float maxThrust = 22.0f;
 public:
 	Player(Camera* camera,int w,int h,Vec2F pos)
@@ -85,4 +85,33 @@ public:
 
 	PlayerCore* GetCore(){ return &core; }
 	void SetMaxThrust(float increment){ maxThrust += increment; }
+	void SetFileData(const playerFileData d)
+	{ 
+		fileData = d; 
+		// NOTE** // update as needed
+		core.traction = fileData.traction;
+		core.level = fileData.level;
+		core.shield_strength = fileData.shieldstrength;
+		core.thrust = fileData.thrust;
+		core.tokens = fileData.tokens;
+		core.Pos = Vec2F(fileData.posX, fileData.posY);
+	}
+	playerFileData GetFileData()
+	{
+		fileData.traction = core.traction;
+		fileData.level = core.level;
+		fileData.shieldstrength = core.shield_strength;
+		fileData.thrust = core.thrust;
+		fileData.tokens = core.tokens;
+		fileData.accX = core.accelX;
+		fileData.accY = core.accelY;
+		fileData.posX = core.Pos.x;
+		fileData.posY = core.Pos.y;
+		fileData.bounce_absorb = core.bounce_absorb;
+		fileData.way_point = core.way_point;
+		fileData.anti_gravity = core.anti_gravity;
+		fileData.Relics = core.relics;
+		
+		return fileData;
+	}
 };

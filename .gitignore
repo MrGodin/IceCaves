@@ -215,3 +215,16 @@ FakesAssemblies/
 **/*.Server/GeneratedArtifacts
 **/*.Server/ModelManifest.xml
 _Pvt_Extensions
+*.exe
+*.pdb
+*.ilk
+*.obj
+*.obj
+*.obj
+*.obj
+*.pdb
+*.log
+*.idb
+*.lastbuildstate
+*.tlog
+*

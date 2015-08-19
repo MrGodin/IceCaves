@@ -39,12 +39,12 @@ public:
 		strLen = wcslen(pText.w_char());
 	}
 	WCHAR* Text(){ return pText.w_char(); }
-	void   SetText(WCHAR* txt){ pText = txt; strLen = wcslen(pText.w_char()); }
+	void   SetText(WCHAR* txt){ pText = txt; strLen = wcslen(pText.w_char()); AlignText(); }
 	void    SetFont(ID3DXFont* f){ pFont = f; }
 	void    SetColor(DWORD c){ txtColor = c; }
 	void AlignText()
 	{
-		int text_indent = textHeight / 2;
+		int text_indent = textHeight / 4;
 
 		RECT r = GetStringRect();
 		long w = r.right - r.left;

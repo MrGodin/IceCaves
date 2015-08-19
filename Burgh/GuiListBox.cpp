@@ -6,6 +6,7 @@ bool GuiListItem::OnMouseMove(GuiEvent& Event)
 	if (PointInFrame({ Event.Mouse.x, Event.Mouse.y }))
 	{
 		SetInnerBorderColor(QVCFrameGrey);
+		return true;
 	}
 	else
 	{
@@ -15,10 +16,14 @@ bool GuiListItem::OnMouseMove(GuiEvent& Event)
 };
 bool GuiListItem::OnMouseClick(GuiEvent& Event)
 {
-	if (Event.Msg == WM_LBUTTONDOWN && PointInFrame({ Event.Mouse.x, Event.Mouse.y }))
+	
+	
+	
+	if ( PointInFrame({ Event.Mouse.x, Event.Mouse.y }))
 	{
 		Event.Sender = this;
 		selected = true;
+		Event.Captured = true;
 		return true;
 	}
 	else
@@ -46,11 +51,19 @@ HRESULT GuiListItem::Rasterize()
 
 bool GuiListBox::OnMouseMove(GuiEvent& Event)
 {
+	if (strList.size() < 1)
+		return false;
 	for (UINT i = 0; i < children.size(); i++)
 	{
 		GuiObject* obj = children[i];
 		switch (obj->Type())
 		{
+		case GUIOBJECT_SLIDER:
+		{
+			GuiSlider* sl = (GuiSlider*)obj;
+			sl->OnMouseMove(Event);
+			break;
+		}
 		case GUIOBJECT_LISTBOX_ITEM:
 		{
 			GuiListItem* item = (GuiListItem*)obj;
@@ -65,6 +78,9 @@ bool GuiListBox::OnMouseMove(GuiEvent& Event)
 };
 bool GuiListBox::OnMouseClick(GuiEvent& Event)
 {
+	
+	if (strList.size() < 1)
+		return false;
 	if (PointInFrame({ Event.Mouse.x, Event.Mouse.y }))
 	{
 		for (UINT i = 0; i < children.size(); i++)
@@ -72,15 +88,35 @@ bool GuiListBox::OnMouseClick(GuiEvent& Event)
 			GuiObject* obj = children[i];
 			switch (obj->Type())
 			{
+			case GUIOBJECT_SLIDER:
+			{
+				GuiSlider* sl = (GuiSlider*)obj;
+				if (sl->OnMouseClick(Event))
+				{
+					if (pSelectedItem)
+					{
+						pSelectedItem->SetSelected(false);
+						pSelectedItem = NULL;
+					}
+				}
+				break;
+			}
 			case GUIOBJECT_LISTBOX_ITEM:
 			{
 				GuiListItem* item = (GuiListItem*)obj;
-				if (item->OnMouseClick(Event))
+				UINT len = wcslen(item->GetText().w_char());
+				if (len > 0 && item != pSelectedItem)
 				{
-					pSelectedItem = (GuiListItem*)Event.Sender;
-					
-					return true;
+					if (item->OnMouseClick(Event))
+					{
+						if (pSelectedItem)
+							pSelectedItem->SetSelected(false);
+
+						pSelectedItem = (GuiListItem*)Event.Sender;
+
+					}
 				}
+				
 			}
 			break;
 			default:
@@ -97,6 +133,10 @@ HRESULT GuiListBox::Rasterize()
 {
 	
 	DrawFrame();
-	
+	for (UINT i = 0; i < children.size(); i++)
+	{
+		GuiFrame* obj = (GuiFrame*)children[i];
+		obj->Rasterize();
+	}
 	return S_OK;
 }

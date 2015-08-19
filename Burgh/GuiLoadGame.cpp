@@ -2,13 +2,15 @@
 #include "GuiLoadGame.h"
 #include "GuiListBox.h"
 #include "GuiContainer.h"
+#include "GuiInput.h"
 #include "StartMenu.h"
+#include "Engine.h"
 
 void GuiLoadGame::CreateGuiWindow()
 {
 	wndDesc.baseColor = QVCWhite;
 	wndDesc.height = 256 - 32;
-	wndDesc.width = 1024 / 3;
+	wndDesc.width = (long)(1024.0f / 2);
 	wndDesc.hoverColor = QVCWhite;
 	wndDesc.innerBorderColor = wndDesc.outerBorderColor = QVCFrameGrey;
 	wndDesc.originX = (core->backBufferWidth / 2) - (wndDesc.width / 2);
@@ -53,13 +55,16 @@ void GuiLoadGame::CreateChildren()
 	listBoxDesc.frmDesc.baseColor = listBoxDesc.frmDesc.hoverColor = QVCRedHover;// QVCRedHover;
 	listBoxDesc.frmDesc.innerBorderColor = QVCFrameGrey;
 	listBoxDesc.frmDesc.outerBorderColor = QVCWhite;
-	listBoxDesc.frmDesc.width = (64 * 2) + (6 * 2);
+	listBoxDesc.frmDesc.width = (64 * 3) + (6 * 2);
 	listBoxDesc.frmDesc.height = 5 * 16;
 	listBoxDesc.frmDesc.originX = pWindow1->OriginX() + 16;// (core->backBufferWidth / 2) - (listBoxDesc.frmDesc.width / 2);
 	listBoxDesc.frmDesc.originY = pWindow1->OriginY() + 48 + 16;// (core->backBufferHeight / 2) - (listBoxDesc.frmDesc.height / 2);
 	listBoxDesc.frmDesc.type = GUIOBJECT_LISTBOX;
 	listBox1 = new GuiListBox(listBoxDesc);
 	listBox1->SetFont(pFonts);
+	listBox1->Create();
+	TGame::gd3dApp->LoadPlayerListBox(listBox1);
+	
 	pWindow1->AddChild(listBox1);
 
 	
@@ -124,6 +129,29 @@ void GuiLoadGame::CreateChildren()
 	btnContainer->Add(btnDesc);
 
 	pWindow1->AddChild(btnContainer);
+
+
+	GuiDisplayPanel::GuiDisplayPanelDesc dsDesc;
+	
+	dsDesc.cols = 2;
+	dsDesc.rows = 5;
+	dsDesc.itemHeight = 17;
+	dsDesc.maxDisplayItems = 4 * 5;
+	dsDesc.frmDesc = listBoxDesc.frmDesc;
+	dsDesc.frmDesc.type = GUIOBJECT_DISPLAYPANEL;
+	dsDesc.frmDesc.height = listBox1->Height();
+	
+	dsDesc.frmDesc.baseColor = dsDesc.frmDesc.innerBorderColor = QVCTransparent;
+	dsDesc.frmDesc.outerBorderColor = QVCRedHover;
+	dsDesc.frmDesc.originX = listBoxDesc.frmDesc.originX + listBoxDesc.frmDesc.width + 22;
+	dsDesc.frmDesc.width = (pWindow1->OriginX() + pWindow1->Width()) - (dsDesc.frmDesc.originX + 18);
+	GuiDisplayPanel* panel = new GuiDisplayPanel(dsDesc);
+	panel->SetFont(pFonts);
+	panel->Create();
+	pWindow1->AddChild(panel);
+
+
+
 }
 void GuiLoadGame::ReDraw()
 {
@@ -176,23 +204,39 @@ UINT GuiLoadGame::msgProcState(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPara
 			case GUIOBJECT_LISTBOX:
 			{
 				GuiListBox* lb = (GuiListBox*)E.Sender;
-				if (lb->Name() == TString("PlayerList"))
+				GuiListItem* selectedItem = lb->SelectedItem();
+				if (selectedItem)
 				{
-					if (lb->SelectedItem())
-					{
-						int x = 0;
-					}
+					GuiDisplayPanel* panel = (GuiDisplayPanel*)pWindow1->GetChildType(GUIOBJECT_DISPLAYPANEL);
+					TGame::gd3dApp->FillPlayerListBoxDisplayPanel(selectedItem->GetText(), panel);
+
 				}
+
 			}
-				break;
+			break;
 			case GUIOBJECT_BUTTON:
 			{
 				
 				switch (E.Action)
 				{
+				case CREATE_NEW_GAME:
+				{
+					Transition(new GuiInput(core));
+					return 0;
+				}
 				case BTN_CANCEL:
 					Transition(new GuiStartMenu(core));
 					return 0;
+				case LOAD_GAME:
+				{
+					GuiListBox* lb = (GuiListBox*)pWindow1->GetChildType(GUIOBJECT_LISTBOX);
+					if (lb)
+					{
+						TString str = lb->SelectedItem()->GetText();
+						TGame::gd3dApp->LoadPlayer(str);
+						return 0;
+					}
+				}
 				}
 			}
 			break;
@@ -223,4 +267,39 @@ UINT GuiLoadGame::msgProcState(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPara
 		return 1;
 	}
 	return 1;
+}
+void GuiLoadGame::Update()
+{
+	GuiButtonContainer* BC = (GuiButtonContainer*)pWindow1->GetChildType(GUIOBJECT_BTNCONTAINER);
+	if (BC)
+	{
+		GuiButton* btn = (GuiButton*)BC->GetChild(1);
+		if (GetSelectedItem(GUIOBJECT_LISTBOX, "PlayerList"))
+		{
+			if (!btn->Enabled())
+			   btn->SetEnabled(true);
+		}
+		else
+		{
+			btn->SetEnabled(false);
+		}
+	}
+}
+GuiListItem*  GuiLoadGame::GetSelectedItem(UINT object_type,TString object_name)
+{
+	switch (object_type)
+	{
+		case GUIOBJECT_LISTBOX:
+		{
+			GuiListBox* lb = (GuiListBox*)pWindow1->GetChildType(object_type);
+			if (lb)
+			{
+				if (lb->Name() == object_name)
+				   return lb->SelectedItem();
+
+			}
+		}
+		default:
+			break;
+	}
 }

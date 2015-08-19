@@ -22,9 +22,11 @@ public:
 		
 	}
 	Vec2L Origin(){ return Vec2L(frameDesc.originX, frameDesc.originY); }
+	
 	virtual ~GuiWindow(){}
 	virtual bool OnMouseMove(GuiEvent& Event)override;
 	virtual bool OnMouseClick(GuiEvent& Event)override;
+	virtual bool OnKeyPress(GuiEvent& Event)override;
 	virtual HRESULT Rasterize()override;
 	
 };
