@@ -1,7 +1,16 @@
-﻿Build started 8/16/2015 11:30:41 PM.
+﻿Build started 8/17/2015 8:17:28 PM.
      1>Project "C:\Users\Ben\Desktop\IceCaves-master\Burgh\Burgh.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Collision.cpp Engine.cpp GameObject.cpp GuiInput.cpp GuiLoadGame.cpp GuiOptionsMenu.cpp GuiWindow.cpp IceCaves.cpp Main.cpp StartMenu.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Collision.cpp Engine.cpp FileHandler.cpp GameObject.cpp GuiButton.cpp GuiCheckBox.cpp GuiControl.cpp GuiDisplayPanel.cpp GuiExitMenu.cpp GuiFrame.cpp GuiInput.cpp GuiInputBox.cpp GuiListBox.cpp GuiLoadGame.cpp GuiOptionsMenu.cpp GuiSlider.cpp GuiSliderKnob.cpp GuiState.cpp GuiStateTmpl.cpp GuiWindow.cpp IceCaves.cpp Main.cpp MapTile.cpp PlayerBounce.cpp PlayerJump.cpp PlayerMove.cpp PlayerStand.cpp StartMenu.cpp keyboardcontroller.cpp
+         StartMenu.cpp
+     1>c:\users\ben\desktop\icecaves-master\burgh\player.h(94): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\ben\desktop\icecaves-master\burgh\player.h(103): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\ben\desktop\icecaves-master\burgh\startmenu.cpp(11): warning C4244: '=' : conversion from 'long double' to 'long', possible loss of data
+         PlayerStand.cpp
+         PlayerMove.cpp
+         PlayerJump.cpp
+         PlayerBounce.cpp
+         MapTile.cpp
          Main.cpp
      1>c:\users\ben\desktop\icecaves-master\burgh\player.h(94): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
      1>c:\users\ben\desktop\icecaves-master\burgh\player.h(103): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
@@ -9,32 +18,49 @@
      1>c:\users\ben\desktop\icecaves-master\burgh\player.h(94): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
      1>c:\users\ben\desktop\icecaves-master\burgh\player.h(103): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
      1>c:\users\ben\desktop\icecaves-master\burgh\icecaves.cpp(336): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
-         Generating Code...
-         Compiling...
-         StartMenu.cpp
-     1>c:\users\ben\desktop\icecaves-master\burgh\player.h(94): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\ben\desktop\icecaves-master\burgh\player.h(103): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\ben\desktop\icecaves-master\burgh\startmenu.cpp(11): warning C4244: '=' : conversion from 'long double' to 'long', possible loss of data
          GuiWindow.cpp
      1>c:\users\ben\desktop\icecaves-master\burgh\player.h(94): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
      1>c:\users\ben\desktop\icecaves-master\burgh\player.h(103): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+         GuiStateTmpl.cpp
+         GuiState.cpp
+         GuiSliderKnob.cpp
+     1>c:\users\ben\desktop\icecaves-master\burgh\guisliderknob.cpp(18): warning C4244: 'argument' : conversion from 'float' to 'long', possible loss of data
+     1>c:\users\ben\desktop\icecaves-master\burgh\guisliderknob.cpp(20): warning C4244: 'initializing' : conversion from 'float' to 'UINT', possible loss of data
+         GuiSlider.cpp
          GuiOptionsMenu.cpp
      1>c:\users\ben\desktop\icecaves-master\burgh\player.h(94): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
      1>c:\users\ben\desktop\icecaves-master\burgh\player.h(103): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
          GuiLoadGame.cpp
      1>c:\users\ben\desktop\icecaves-master\burgh\player.h(94): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
      1>c:\users\ben\desktop\icecaves-master\burgh\player.h(103): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+         GuiListBox.cpp
+         GuiInputBox.cpp
          GuiInput.cpp
      1>c:\users\ben\desktop\icecaves-master\burgh\player.h(94): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
      1>c:\users\ben\desktop\icecaves-master\burgh\player.h(103): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-         GameObject.cpp
-         Engine.cpp
-     1>c:\users\ben\desktop\icecaves-master\burgh\player.h(94): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\ben\desktop\icecaves-master\burgh\player.h(103): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-         Collision.cpp
+         GuiFrame.cpp
+         GuiExitMenu.cpp
          Generating Code...
      1>c:\users\ben\desktop\icecaves-master\burgh\guiloadgame.cpp(305): warning C4715: 'GuiLoadGame::GetSelectedItem' : not all control paths return a value
      1>c:\users\ben\desktop\icecaves-master\burgh\guiwindow.cpp(160): warning C4715: 'GuiWindow::OnKeyPress' : not all control paths return a value
+         Compiling...
+         GuiDisplayPanel.cpp
+     1>c:\users\ben\desktop\icecaves-master\burgh\guidisplaypanel.cpp(23): warning C4244: '=' : conversion from 'float' to 'long', possible loss of data
+     1>c:\users\ben\desktop\icecaves-master\burgh\guidisplaypanel.cpp(24): warning C4244: '=' : conversion from 'float' to 'long', possible loss of data
+     1>c:\users\ben\desktop\icecaves-master\burgh\guidisplaypanel.cpp(33): warning C4244: '=' : conversion from 'long' to 'float', possible loss of data
+         GuiControl.cpp
+         GuiCheckBox.cpp
+         GuiButton.cpp
+         Engine.cpp
+     1>c:\users\ben\desktop\icecaves-master\burgh\player.h(94): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\ben\desktop\icecaves-master\burgh\player.h(103): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+         Generating Code...
+         Compiling...
+         keyboardcontroller.cpp
+         GameObject.cpp
+         FileHandler.cpp
+         Collision.cpp
+         Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Ben\Desktop\IceCaves-master\Debug\Burgh.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86" d3d9.lib d3dx9.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Ben\Desktop\IceCaves-master\Debug\Burgh.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Ben\Desktop\IceCaves-master\Debug\Burgh.lib" /MACHINE:X86 Debug\Collision.obj
          Debug\cpu.obj
@@ -66,10 +92,9 @@
          Debug\PlayerMove.obj
          Debug\PlayerStand.obj
          Debug\StartMenu.obj
-         LINK : C:\Users\Ben\Desktop\IceCaves-master\Debug\Burgh.exe not found or not built by the last incremental link; performing full link
          Burgh.vcxproj -> C:\Users\Ben\Desktop\IceCaves-master\Debug\Burgh.exe
      1>Done Building Project "C:\Users\Ben\Desktop\IceCaves-master\Burgh\Burgh.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:12.84
+Time Elapsed 00:00:42.45

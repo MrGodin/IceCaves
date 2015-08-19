@@ -2,7 +2,7 @@
 #pragma once
 
 #include "windows.h"
-
+#include "Vec2.h"
 template <class T>
 class _Rect
 {
@@ -80,12 +80,12 @@ public:
 		right = __min(right, rect.right);
 		bottom = __min(bottom, rect.bottom);
 	}
-	inline bool OverLaps(Rect& rect)
+	inline bool OverLaps(_Rect& rect)
 	{
 		return top < rect.bottom && bottom > rect.top && left < rect.right && right > rect.left;
 	}
 
-	inline bool Conatins(Vec2& pt)
+	inline bool Conatins(_Vec2<T>& pt)
 	{
 		return pt.x >= left && pt.x <= right && pt.y >= top && pt.y <= bottom;
 	}
